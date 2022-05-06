@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+        <!-- Title  -->
+        <title>.lib - Authentication</title>
+
+        <!-- Favicon  -->
+        <link rel="icon" href="img/core-img/favicon.ico" />
+
+        <!-- Core Style CSS -->
+        <link rel="stylesheet" href="./css/authentication.css" />
+    </head>
+    <body>
+        <section class="authentication-page">
+            <div class="authentication" id="container">
+                <div class="authentication__form-container authentication__sign-up">
+                    <form class="authentication__form authentication__form--sign-up">
+                        <h2 class="authentication__title">Create Account</h2>
+
+                        <input
+                            class="authentication__input authentication__input--name-sign-up"
+                            type="text"
+                            placeholder="Name"
+                        />
+                        <input
+                            class="authentication__input authentication__input--email-sign-up"
+                            type="email"
+                            placeholder="Email"
+                        />
+                        <input
+                            class="authentication__input authentication__input--password-sign-up"
+                            type="password"
+                            placeholder="Password"
+                        />
+
+                        <p class="authentication__error-message authentication__error-message--sign-up"></p>
+
+                        <button class="button button--sign-up">Sign Up</button>
+                    </form>
+                </div>
+
+                <div class="authentication__form-container authentication__sign-in">
+                    <form class="authentication__form authentication__form--sign-in">
+                        <h2 class="authentication__title">Sign in</h2>
+
+                        <input
+                            class="authentication__input authentication__input--email-sign-in"
+                            type="email"
+                            placeholder="Email"
+                        />
+                        <input
+                            class="authentication__input authentication__input--password-sign-in"
+                            type="password"
+                            placeholder="Password"
+                        />
+
+                        <p class="authentication__error-message authentication__error-message--sign-in"></p>
+
+                        <button class="button button--sign-in">Sign In</button>
+                    </form>
+                </div>
+
+                <div class="authentication__overlay-container">
+                    <div class="authentication__overlay">
+                        <div class="authentication__overlay-panel authentication__overlay-panel--left">
+                            <h2 class="authentication__title">Welcome Back!</h2>
+                            <p class="authentication__paragraph">
+                                To keep connected with us please login with your personal info
+                            </p>
+
+                            <button class="button button--overlay button--overlay-sign-in" id="signIn">
+                                Sign In
+                            </button>
+                        </div>
+
+                        <div class="authentication__overlay-panel authentication__overlay-panel--right">
+                            <h2 class="authentication__title">Hello, Friend!</h2>
+                            <p class="authentication__paragraph">
+                                Enter your personal details and start journey with us
+                            </p>
+
+                            <button class="button button--overlay button--overlay-sign-up" id="signUp">
+                                Sign Up
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script src="./js/authentication.js"></script>
+    </body>
+</html>
