@@ -1,22 +1,22 @@
 {
-  "name": "dot-lib",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Suriya-2002/dot-lib.git"
-  },
-  "author": "Suriya KS",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Suriya-2002/dot-lib/issues"
-  },
-  "homepage": "https://github.com/Suriya-2002/dot-lib#readme",
-  "dependencies": {
-    "firebase": "^9.7.0"
-  }
+    "name": "dot-lib",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Suriya-2002/dot-lib.git"
+    },
+    "author": "Suriya KS",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Suriya-2002/dot-lib/issues"
+    },
+    "homepage": "https://github.com/Suriya-2002/dot-lib#readme",
+    "dependencies": {
+        "firebase": "^9.6.1"
+    }
 }
