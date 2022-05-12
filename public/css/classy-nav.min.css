@@ -3,10 +3,6 @@ ol,
 ul {
     margin: 0;
 }
-.classynav ul li.megamenu-item > a:after,
-.icon-down-arrow:before {
-    content: '\e900';
-}
 * {
     padding: 0;
 }
