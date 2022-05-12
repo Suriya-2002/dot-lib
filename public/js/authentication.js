@@ -90,7 +90,7 @@ const validateUserSignIn = error => {
         return;
     }
 
-    window.location.href = './../index.html';
+    window.location.href = '/index';
 };
 
 const validateUserSignUp = error => {
@@ -101,7 +101,7 @@ const validateUserSignUp = error => {
         return;
     }
 
-    window.location.href = './../index.html';
+    window.location.href = '/index';
 };
 
 const controlAuthenticationSignIn = async credentials => {
