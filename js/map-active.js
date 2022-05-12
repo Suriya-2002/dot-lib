@@ -2,167 +2,167 @@ var map;
 var latlng = new google.maps.LatLng(51.5074, 0.1278);
 var stylez = [
     {
-        "featureType": "administrative.locality",
-        "elementType": "all",
-        "stylers": [
+        featureType: 'administrative.locality',
+        elementType: 'all',
+        stylers: [
             {
-                "hue": "#2c2e33"
+                hue: '#2c2e33',
             },
             {
-                "saturation": 7
+                saturation: 7,
             },
             {
-                "lightness": 19
+                lightness: 19,
             },
             {
-                "visibility": "on"
-            }
-        ]
+                visibility: 'on',
+            },
+        ],
     },
     {
-        "featureType": "landscape",
-        "elementType": "all",
-        "stylers": [
+        featureType: 'landscape',
+        elementType: 'all',
+        stylers: [
             {
-                "hue": "#ffffff"
+                hue: '#ffffff',
             },
             {
-                "saturation": -100
+                saturation: -100,
             },
             {
-                "lightness": 100
+                lightness: 100,
             },
             {
-                "visibility": "simplified"
-            }
-        ]
+                visibility: 'simplified',
+            },
+        ],
     },
     {
-        "featureType": "poi",
-        "elementType": "all",
-        "stylers": [
+        featureType: 'poi',
+        elementType: 'all',
+        stylers: [
             {
-                "hue": "#ffffff"
+                hue: '#ffffff',
             },
             {
-                "saturation": -100
+                saturation: -100,
             },
             {
-                "lightness": 100
+                lightness: 100,
             },
             {
-                "visibility": "off"
-            }
-        ]
+                visibility: 'off',
+            },
+        ],
     },
     {
-        "featureType": "road",
-        "elementType": "geometry",
-        "stylers": [
+        featureType: 'road',
+        elementType: 'geometry',
+        stylers: [
             {
-                "hue": "#bbc0c4"
+                hue: '#bbc0c4',
             },
             {
-                "saturation": -93
+                saturation: -93,
             },
             {
-                "lightness": 31
+                lightness: 31,
             },
             {
-                "visibility": "simplified"
-            }
-        ]
+                visibility: 'simplified',
+            },
+        ],
     },
     {
-        "featureType": "road",
-        "elementType": "labels",
-        "stylers": [
+        featureType: 'road',
+        elementType: 'labels',
+        stylers: [
             {
-                "hue": "#bbc0c4"
+                hue: '#bbc0c4',
             },
             {
-                "saturation": -93
+                saturation: -93,
             },
             {
-                "lightness": 31
+                lightness: 31,
             },
             {
-                "visibility": "on"
-            }
-        ]
+                visibility: 'on',
+            },
+        ],
     },
     {
-        "featureType": "road.arterial",
-        "elementType": "labels",
-        "stylers": [
+        featureType: 'road.arterial',
+        elementType: 'labels',
+        stylers: [
             {
-                "hue": "#bbc0c4"
+                hue: '#bbc0c4',
             },
             {
-                "saturation": -93
+                saturation: -93,
             },
             {
-                "lightness": -2
+                lightness: -2,
             },
             {
-                "visibility": "simplified"
-            }
-        ]
+                visibility: 'simplified',
+            },
+        ],
     },
     {
-        "featureType": "road.local",
-        "elementType": "geometry",
-        "stylers": [
+        featureType: 'road.local',
+        elementType: 'geometry',
+        stylers: [
             {
-                "hue": "#e9ebed"
+                hue: '#e9ebed',
             },
             {
-                "saturation": -90
+                saturation: -90,
             },
             {
-                "lightness": -8
+                lightness: -8,
             },
             {
-                "visibility": "simplified"
-            }
-        ]
+                visibility: 'simplified',
+            },
+        ],
     },
     {
-        "featureType": "transit",
-        "elementType": "all",
-        "stylers": [
+        featureType: 'transit',
+        elementType: 'all',
+        stylers: [
             {
-                "hue": "#e9ebed"
+                hue: '#e9ebed',
             },
             {
-                "saturation": 10
+                saturation: 10,
             },
             {
-                "lightness": 69
+                lightness: 69,
             },
             {
-                "visibility": "on"
-            }
-        ]
+                visibility: 'on',
+            },
+        ],
     },
     {
-        "featureType": "water",
-        "elementType": "all",
-        "stylers": [
+        featureType: 'water',
+        elementType: 'all',
+        stylers: [
             {
-                "hue": "#e9ebed"
+                hue: '#e9ebed',
             },
             {
-                "saturation": -78
+                saturation: -78,
             },
             {
-                "lightness": 67
+                lightness: 67,
             },
             {
-                "visibility": "simplified"
-            }
-        ]
-    }
+                visibility: 'simplified',
+            },
+        ],
+    },
 ];
 var mapOptions = {
     zoom: 14,
@@ -171,28 +171,31 @@ var mapOptions = {
     scaleControl: false,
     disableDefaultUI: true,
     mapTypeControlOptions: {
-        mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'gMap']
-    }
+        mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'gMap'],
+    },
 };
-map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
+map = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
 var geocoder_map = new google.maps.Geocoder();
 var address = 'London';
-geocoder_map.geocode({
-    'address': address
-}, function (results, status) {
-    if (status == google.maps.GeocoderStatus.OK) {
-        map.setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
-            map: map,
-            icon: 'img/core-img/pin.png',
-            position: map.getCenter()
-        });
-    } else {
-        alert("Geocode was not successful for the following reason: " + status);
+geocoder_map.geocode(
+    {
+        address: address,
+    },
+    function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                map: map,
+                icon: './assets/images/pin.png',
+                position: map.getCenter(),
+            });
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
     }
-});
+);
 var mapType = new google.maps.StyledMapType(stylez, {
-    name: "Grayscale"
+    name: 'Grayscale',
 });
 map.mapTypes.set('gMap', mapType);
 map.setMapTypeId('gMap');

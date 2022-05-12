@@ -21,39 +21,42 @@
             smartSpeed: 1000,
             responsive: {
                 0: {
-                    items: 1
+                    items: 1,
                 },
                 576: {
-                    items: 2
+                    items: 2,
                 },
                 768: {
-                    items: 3
+                    items: 3,
                 },
                 992: {
-                    items: 4
-                }
-            }
+                    items: 4,
+                },
+            },
         });
         $('.product_thumbnail_slides').owlCarousel({
             items: 1,
             margin: 0,
             loop: true,
             nav: true,
-            navText: ["<img src='img/core-img/long-arrow-left.svg' alt=''>", "<img src='img/core-img/long-arrow-right.svg' alt=''>"],
+            navText: [
+                "<img src='./assets/images/long-arrow-left.svg' alt=''>",
+                "<img src='./assets/images/long-arrow-right.svg' alt=''>",
+            ],
             dots: false,
             autoplay: true,
             autoplayTimeout: 5000,
-            smartSpeed: 1000
+            smartSpeed: 1000,
         });
     }
 
     // :: Header Cart Active Code
     var cartbtn1 = $('#essenceCartBtn');
-    var cartOverlay = $(".cart-bg-overlay");
-    var cartWrapper = $(".right-side-cart-area");
-    var cartbtn2 = $("#rightSideCart");
-    var cartOverlayOn = "cart-bg-overlay-on";
-    var cartOn = "cart-on";
+    var cartOverlay = $('.cart-bg-overlay');
+    var cartWrapper = $('.right-side-cart-area');
+    var cartbtn2 = $('#rightSideCart');
+    var cartOverlayOn = 'cart-bg-overlay-on';
+    var cartOn = 'cart-on';
 
     cartbtn1.on('click', function () {
         cartOverlay.toggleClass(cartOverlayOn);
@@ -73,7 +76,7 @@
         $.scrollUp({
             scrollSpeed: 1000,
             easingType: 'easeInOutQuart',
-            scrollText: '<i class="fa fa-angle-up" aria-hidden="true"></i>'
+            scrollText: '<i class="fa fa-angle-up" aria-hidden="true"></i>',
         });
     }
 
@@ -106,15 +109,15 @@
             max: max,
             values: [value_min, value_max],
             slide: function (event, ui) {
-                var result = label_result + " " + unit + ui.values[0] + ' - ' + unit + ui.values[1];
+                var result = label_result + ' ' + unit + ui.values[0] + ' - ' + unit + ui.values[1];
                 console.log(t);
                 t.closest('.slider-range').find('.range-price').html(result);
-            }
+            },
         });
     });
 
     // :: Favorite Button Active Code
-    var favme = $(".favme");
+    var favme = $('.favme');
 
     favme.on('click', function () {
         $(this).toggleClass('active');
@@ -130,7 +133,7 @@
 
     // :: Nicescroll Active Code
     if ($.fn.niceScroll) {
-        $(".cart-list, .cart-content").niceScroll();
+        $('.cart-list, .cart-content').niceScroll();
     }
 
     // :: wow Active Code
@@ -147,5 +150,4 @@
     $("a[href='#']").on('click', function ($) {
         $.preventDefault();
     });
-
 })(jQuery);
