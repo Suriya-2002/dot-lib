@@ -61,9 +61,9 @@
             </div>
 
             <div class="cart-area">
-                <a href="#" id="essenceCartBtn"
-                    ><img src="./assets/images/bag.svg" alt="" /> <span>0</span></a
-                >
+                <a href="#" id="essenceCartBtn">
+                    <img src="./assets/images/bag.svg" alt="" /> <span><%= cart.items.length %></span>
+                </a>
             </div>
         </div>
     </div>
@@ -73,74 +73,41 @@
 
 <div class="right-side-cart-area">
     <div class="cart-button">
-        <a href="#" id="rightSideCart"><img src="./assets/images/bag.svg" alt="" /> <span>0</span></a>
+        <a href="#" id="rightSideCart">
+            <img src="./assets/images/bag.svg" alt="" /> <span><%= cart.items.length %></span>
+        </a>
     </div>
 
     <div class="cart-content d-flex">
         <div class="cart-list">
+            <% cart.items.forEach(item => { %>
             <div class="single-cart-item">
                 <a href="#" class="product-image">
-                    <img src="./assets/images/book.jpg" class="cart-thumb" alt="" />
+                    <img src="<%= item.volumeInfo.imageLinks.medium %>" class="cart-thumb" alt="" />
 
                     <div class="cart-item-desc">
                         <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                        <span class="badge">{#BOOK_GENRE#}</span>
-                        <h6>{#BOOK_NAME#}</h6>
-                        <p class="color">Author: {#BOOK_AUTHOR#}</p>
-                        <p class="price">$20</p>
+                        <% if (item.volumeInfo.categories) { %>
+                        <span class="badge"><%= item.volumeInfo.categories[0].split('/')[0] %></span>
+                        <% } %>
+                        <h6><%= item.volumeInfo.title %></h6>
+                        <p class="color"><%= item.volumeInfo.authors[0] %></p>
+                        <p class="price">
+                            &#8377;<%= item.saleInfo.saleability === 'NOT_FOR_SALE' ? 50 :
+                            item.saleInfo.saleability %>
+                        </p>
                     </div>
                 </a>
             </div>
-
-            <div class="single-cart-item">
-                <a href="#" class="product-image">
-                    <img src="./assets/images/book.jpg" class="cart-thumb" alt="" />
-
-                    <div class="cart-item-desc">
-                        <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                        <span class="badge">{#BOOK_GENRE#}</span>
-                        <h6>{#BOOK_NAME#}</h6>
-                        <p class="color">Author: {#BOOK_AUTHOR#}</p>
-                        <p class="price">$20</p>
-                    </div>
-                </a>
-            </div>
-
-            <div class="single-cart-item">
-                <a href="#" class="product-image">
-                    <img src="./assets/images/book.jpg" class="cart-thumb" alt="" />
-
-                    <div class="cart-item-desc">
-                        <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                        <span class="badge">{#BOOK_GENRE#}</span>
-                        <h6>{#BOOK_NAME#}</h6>
-                        <p class="color">Author: {#BOOK_AUTHOR#}</p>
-                        <p class="price">$20</p>
-                    </div>
-                </a>
-            </div>
-
-            <div class="single-cart-item">
-                <a href="#" class="product-image">
-                    <img src="./assets/images/book.jpg" class="cart-thumb" alt="" />
-
-                    <div class="cart-item-desc">
-                        <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                        <span class="badge">{#BOOK_GENRE#}</span>
-                        <h6>{#BOOK_NAME#}</h6>
-                        <p class="color">Author: {#BOOK_AUTHOR#}</p>
-                        <p class="price">$20</p>
-                    </div>
-                </a>
-            </div>
+            <% }); %>
         </div>
 
         <div class="cart-amount-summary">
             <h2>Summary</h2>
             <ul class="summary-table">
-                <li><span>subtotal:</span> <span>$250</span></li>
-                <li><span>discount:</span> <span>-15%</span></li>
-                <li><span>total:</span> <span>$200</span></li>
+                <li><span>subtotal:</span> <span>&#8377;<%= cart.subtotal %></span></li>
+                <li><span>discount:</span> <span>&#8377;<%= cart.discount %></span></li>
+                <li><span>total:</span> <span>&#8377;<%= cart.total %></span></li>
             </ul>
             <div class="checkout-btn mt-100">
                 <a href="/checkout" class="btn essence-btn">Check Out</a>

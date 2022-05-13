@@ -1,6 +1,11 @@
+import fs from 'fs';
+import path from 'path';
+
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+
+import { rootDirectory } from './../utilities.js';
 
 const firebaseConfig = {
     apiKey: 'AIzaSyC0Knk7W5pfY4eRlM0vNMbYznV47fBHAuY',
@@ -12,7 +17,7 @@ const firebaseConfig = {
     measurementId: 'G-D438YFH6TJ',
 };
 
-export const state = {
+const state = {
     userID: '',
     name: '',
     email: '',
@@ -28,48 +33,63 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-const updateState = updatedState => {
-    state.name = updatedState.name;
-    state.email = updatedState.email;
+const updateState = async updatedState => {
+    try {
+        state.name = updatedState.name;
+        state.email = updatedState.email;
 
-    state.cart.total = updatedState.cart.total;
-    state.cart.discount = updatedState.cart.discount;
-    state.cart.subtotal = updatedState.cart.subtotal;
-    state.cart.items = updatedState.cart.items;
+        state.cart.total = updatedState.cart.total;
+        state.cart.discount = updatedState.cart.discount;
+        state.cart.subtotal = updatedState.cart.subtotal;
+        state.cart.items = updatedState.cart.items;
+
+        await fs.promises.writeFile(path.join(rootDirectory, 'state.json'), JSON.stringify(state));
+    } catch (error) {
+        throw error;
+    }
 };
 
 const loadPage = async () => {
-    const userDocumentReference = doc(db, 'users', state.userID);
-    const userDocument = await getDoc(userDocumentReference);
+    try {
+        const userDocumentReference = doc(db, 'users', state.userID);
+        const userDocument = await getDoc(userDocumentReference);
 
-    updateState(userDocument.data());
-    console.log(state);
+        await updateState(userDocument.data());
+    } catch (error) {
+        throw error;
+    }
 };
 
 export const authenticationSignIn = async (email, password) => {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-
-    state.userID = userCredential.user.uid;
-
-    loadPage();
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        state.userID = userCredential.user.uid;
+        await loadPage();
+    } catch (error) {
+        throw error;
+    }
 };
 
 export const authenticationSignUp = async (name, email, password) => {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
-    state.userID = userCredential.user.uid;
+        state.userID = userCredential.user.uid;
 
-    const userDocumentReference = doc(db, 'users', state.userID);
-    await setDoc(userDocumentReference, {
-        name: name,
-        email: email,
-        cart: {
-            total: 0,
-            discount: 0,
-            subtotal: 0,
-            items: [],
-        },
-    });
+        const userDocumentReference = doc(db, 'users', state.userID);
+        await setDoc(userDocumentReference, {
+            name: name,
+            email: email,
+            cart: {
+                total: 0,
+                discount: 0,
+                subtotal: 0,
+                items: [],
+            },
+        });
 
-    loadPage();
+        await loadPage();
+    } catch (error) {
+        throw error;
+    }
 };
