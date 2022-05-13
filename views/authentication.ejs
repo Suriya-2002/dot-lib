@@ -6,57 +6,68 @@
         <title>.lib - Authentication</title>
 
         <link rel="stylesheet" href="./css/authentication.css" />
-
-        <script src="/js/controller.js" type="module" defer></script>
     </head>
 
     <body>
         <section class="authentication-page">
             <div class="authentication" id="container">
                 <div class="authentication__form-container authentication__sign-up">
-                    <form class="authentication__form authentication__form--sign-up">
+                    <form
+                        class="authentication__form authentication__form--sign-up"
+                        action="/authentication/sign-up"
+                        method="POST"
+                    >
                         <h2 class="authentication__title">Create Account</h2>
 
                         <input
                             class="authentication__input authentication__input--name-sign-up"
                             type="text"
+                            name="name"
                             placeholder="Name"
                         />
                         <input
                             class="authentication__input authentication__input--email-sign-up"
                             type="email"
+                            name="email"
                             placeholder="Email"
                         />
                         <input
                             class="authentication__input authentication__input--password-sign-up"
                             type="password"
+                            name="password"
                             placeholder="Password"
                         />
 
                         <p class="authentication__error-message authentication__error-message--sign-up"></p>
 
-                        <button class="button button--sign-up">Sign Up</button>
+                        <button type="submit" class="button button--sign-up">Sign Up</button>
                     </form>
                 </div>
 
                 <div class="authentication__form-container authentication__sign-in">
-                    <form class="authentication__form authentication__form--sign-in">
+                    <form
+                        class="authentication__form authentication__form--sign-in"
+                        action="/authentication/sign-in"
+                        method="POST"
+                    >
                         <h2 class="authentication__title">Sign in</h2>
 
                         <input
                             class="authentication__input authentication__input--email-sign-in"
                             type="email"
+                            name="email"
                             placeholder="Email"
                         />
                         <input
                             class="authentication__input authentication__input--password-sign-in"
                             type="password"
+                            name="password"
                             placeholder="Password"
                         />
 
                         <p class="authentication__error-message authentication__error-message--sign-in"></p>
 
-                        <button class="button button--sign-in">Sign In</button>
+                        <button type="submit" class="button button--sign-in">Sign In</button>
                     </form>
                 </div>
 

@@ -1,7 +1,10 @@
-const path = require('path');
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const express = require('express');
-const bodyParser = require('body-parser');
+import express from 'express';
+import bodyParser from 'body-parser';
+
+import { router as authenticationRoutes } from './routes/authentication.js';
 
 const app = express();
 
@@ -9,15 +12,13 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(path.dirname(fileURLToPath(import.meta.url)), 'public')));
 
 app.get('/', (req, res, next) => {
     res.render('index');
 });
 
-app.get('/authentication', (req, res, next) => {
-    res.render('authentication');
-});
+app.use('/authentication', authenticationRoutes);
 
 app.get('/shop', (req, res, next) => {
     res.render('shop');
