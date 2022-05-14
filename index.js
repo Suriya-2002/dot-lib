@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 
 import { router as shopRoutes } from './routes/shop.js';
 import { router as authenticationRoutes } from './routes/authentication.js';
+import { router as errorRoutes } from './routes/errors.js';
 import { rootDirectory } from './utilities.js';
 
 const app = express();
@@ -15,23 +16,8 @@ app.set('views', 'views');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(rootDirectory, 'public')));
 
-app.get('/', shopRoutes);
+app.use('/', shopRoutes);
 app.use('/authentication', authenticationRoutes);
-
-app.get('/shop', (req, res, next) => {
-    res.render('shop');
-});
-
-app.get('/details', (req, res, next) => {
-    res.render('details');
-});
-
-app.get('/checkout', (req, res, next) => {
-    res.render('checkout');
-});
-
-app.get('/404', (req, res, next) => {
-    res.status(404).render('');
-});
+app.use('/', errorRoutes);
 
 app.listen(2002, 'localhost');
