@@ -2,9 +2,21 @@ import fs from 'fs';
 import path from 'path';
 
 import fetch from 'node-fetch';
+import axios from 'axios';
 
 import { rootDirectory, asyncForEach } from './../utilities.js';
-import { async } from '@firebase/util';
+
+const fetchBooks = async searchQuery => {
+    try {
+        const maxResults = 9;
+        const URL = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&maxResults=${maxResults}`;
+        const response = await axios.get(URL);
+
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+};
 
 const fetchCartItems = async () => {
     try {
@@ -33,10 +45,14 @@ export const getIndexPage = async (req, res, next) => {
     }
 };
 
-export const getSearchPage = async (req, res, next) => {
+export const postSearchQuery = async (req, res, next) => {
     try {
+        const { searchQuery } = req.body;
+        const searchResults = await fetchBooks(searchQuery);
+
         const cart = await fetchCartItems();
-        res.render('search', { cart });
+
+        res.render('search', { cart, searchQuery, searchResults });
     } catch (error) {
         throw error;
     }

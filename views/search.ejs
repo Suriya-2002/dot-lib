@@ -3,7 +3,7 @@
     <head>
         <%- include('./includes/head.ejs', {includeJS: true}) %>
 
-        <title>.lib - {#SEARCH_QUERY#}</title>
+        <title>.lib - <%= searchQuery %></title>
 
         <link rel="stylesheet" href="./css/core-style.css" />
         <link rel="stylesheet" href="./css/style.css" />
@@ -140,7 +140,7 @@
                                     >
                                         <!-- Total Products -->
                                         <div class="total-products">
-                                            <p><span>{#SEARCH_RESULT_COUNT#}</span> products found</p>
+                                            <p><span><%= searchResults.totalItems %></span> products found</p>
                                         </div>
                                         <!-- Sorting -->
                                         <div class="product-sorting d-flex">
@@ -160,14 +160,18 @@
                             </div>
 
                             <div class="row">
-                                <!-- Single Product -->
+                                <% searchResults.items.forEach(item => { %>
                                 <div class="col-12 col-sm-6 col-lg-4">
                                     <div class="single-product-wrapper">
                                         <!-- Product Image -->
                                         <div class="product-img">
-                                            <img src="./assets/images/book.jpg" alt="" />
+                                            <img src="<%= item.volumeInfo.imageLinks.thumbnail %>" alt="" />
                                             <!-- Hover Thumb -->
-                                            <img class="hover-img" src="./assets/images/book.jpg" alt="" />
+                                            <img
+                                                class="hover-img"
+                                                src="<%= item.volumeInfo.imageLinks.thumbnail %>"
+                                                alt=""
+                                            />
 
                                             <!-- Product Badge -->
                                             <div class="product-badge offer-badge">
@@ -181,9 +185,9 @@
 
                                         <!-- Product Description -->
                                         <div class="product-description">
-                                            <span>{#BOOK_GENRE#}</span>
+                                            <span><%= item.volumeInfo.categories %></span>
                                             <a href="/details">
-                                                <h6>{#BOOK_NAME#}</h6>
+                                                <h6><%= item.volumeInfo.title %></h6>
                                             </a>
                                             <p class="product-price">
                                                 <span class="old-price">$75.00</span> $55.00
@@ -193,332 +197,15 @@
                                             <div class="hover-content">
                                                 <!-- Add to Cart -->
                                                 <div class="add-to-cart-btn">
-                                                    <a href="/details" class="btn essence-btn">Know More</a>
+                                                    <a href="/details/<%= item.id %>" class="btn essence-btn"
+                                                        >Know More</a
+                                                    >
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- Single Product -->
-                                <div class="col-12 col-sm-6 col-lg-4">
-                                    <div class="single-product-wrapper">
-                                        <!-- Product Image -->
-                                        <div class="product-img">
-                                            <img src="./assets/images/book.jpg" alt="" />
-                                            <!-- Hover Thumb -->
-                                            <img class="hover-img" src="./assets/images/book.jpg" alt="" />
-
-                                            <!-- Product Badge -->
-                                            <div class="product-badge offer-badge">
-                                                <span>-30%</span>
-                                            </div>
-                                            <!-- Favourite -->
-                                            <div class="product-favourite">
-                                                <a href="#" class="favme fa fa-heart"></a>
-                                            </div>
-                                        </div>
-
-                                        <!-- Product Description -->
-                                        <div class="product-description">
-                                            <span>{#BOOK_GENRE#}</span>
-                                            <a href="/details">
-                                                <h6>{#BOOK_NAME#}</h6>
-                                            </a>
-                                            <p class="product-price">
-                                                <span class="old-price">$75.00</span> $55.00
-                                            </p>
-
-                                            <!-- Hover Content -->
-                                            <div class="hover-content">
-                                                <!-- Add to Cart -->
-                                                <div class="add-to-cart-btn">
-                                                    <a href="/details" class="btn essence-btn">Know More</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Single Product -->
-                                <div class="col-12 col-sm-6 col-lg-4">
-                                    <div class="single-product-wrapper">
-                                        <!-- Product Image -->
-                                        <div class="product-img">
-                                            <img src="./assets/images/book.jpg" alt="" />
-                                            <!-- Hover Thumb -->
-                                            <img class="hover-img" src="./assets/images/book.jpg" alt="" />
-
-                                            <!-- Product Badge -->
-                                            <div class="product-badge offer-badge">
-                                                <span>-30%</span>
-                                            </div>
-                                            <!-- Favourite -->
-                                            <div class="product-favourite">
-                                                <a href="#" class="favme fa fa-heart"></a>
-                                            </div>
-                                        </div>
-
-                                        <!-- Product Description -->
-                                        <div class="product-description">
-                                            <span>{#BOOK_GENRE#}</span>
-                                            <a href="/details">
-                                                <h6>{#BOOK_NAME#}</h6>
-                                            </a>
-                                            <p class="product-price">
-                                                <span class="old-price">$75.00</span> $55.00
-                                            </p>
-
-                                            <!-- Hover Content -->
-                                            <div class="hover-content">
-                                                <!-- Add to Cart -->
-                                                <div class="add-to-cart-btn">
-                                                    <a href="/details" class="btn essence-btn">Know More</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Single Product -->
-                                <div class="col-12 col-sm-6 col-lg-4">
-                                    <div class="single-product-wrapper">
-                                        <!-- Product Image -->
-                                        <div class="product-img">
-                                            <img src="./assets/images/book.jpg" alt="" />
-                                            <!-- Hover Thumb -->
-                                            <img class="hover-img" src="./assets/images/book.jpg" alt="" />
-
-                                            <!-- Product Badge -->
-                                            <div class="product-badge offer-badge">
-                                                <span>-30%</span>
-                                            </div>
-                                            <!-- Favourite -->
-                                            <div class="product-favourite">
-                                                <a href="#" class="favme fa fa-heart"></a>
-                                            </div>
-                                        </div>
-
-                                        <!-- Product Description -->
-                                        <div class="product-description">
-                                            <span>{#BOOK_GENRE#}</span>
-                                            <a href="/details">
-                                                <h6>{#BOOK_NAME#}</h6>
-                                            </a>
-                                            <p class="product-price">
-                                                <span class="old-price">$75.00</span> $55.00
-                                            </p>
-
-                                            <!-- Hover Content -->
-                                            <div class="hover-content">
-                                                <!-- Add to Cart -->
-                                                <div class="add-to-cart-btn">
-                                                    <a href="/details" class="btn essence-btn">Know More</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Single Product -->
-                                <div class="col-12 col-sm-6 col-lg-4">
-                                    <div class="single-product-wrapper">
-                                        <!-- Product Image -->
-                                        <div class="product-img">
-                                            <img src="./assets/images/book.jpg" alt="" />
-                                            <!-- Hover Thumb -->
-                                            <img class="hover-img" src="./assets/images/book.jpg" alt="" />
-
-                                            <!-- Product Badge -->
-                                            <div class="product-badge offer-badge">
-                                                <span>-30%</span>
-                                            </div>
-                                            <!-- Favourite -->
-                                            <div class="product-favourite">
-                                                <a href="#" class="favme fa fa-heart"></a>
-                                            </div>
-                                        </div>
-
-                                        <!-- Product Description -->
-                                        <div class="product-description">
-                                            <span>{#BOOK_GENRE#}</span>
-                                            <a href="/details">
-                                                <h6>{#BOOK_NAME#}</h6>
-                                            </a>
-                                            <p class="product-price">
-                                                <span class="old-price">$75.00</span> $55.00
-                                            </p>
-
-                                            <!-- Hover Content -->
-                                            <div class="hover-content">
-                                                <!-- Add to Cart -->
-                                                <div class="add-to-cart-btn">
-                                                    <a href="/details" class="btn essence-btn">Know More</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Single Product -->
-                                <div class="col-12 col-sm-6 col-lg-4">
-                                    <div class="single-product-wrapper">
-                                        <!-- Product Image -->
-                                        <div class="product-img">
-                                            <img src="./assets/images/book.jpg" alt="" />
-                                            <!-- Hover Thumb -->
-                                            <img class="hover-img" src="./assets/images/book.jpg" alt="" />
-
-                                            <!-- Product Badge -->
-                                            <div class="product-badge offer-badge">
-                                                <span>-30%</span>
-                                            </div>
-                                            <!-- Favourite -->
-                                            <div class="product-favourite">
-                                                <a href="#" class="favme fa fa-heart"></a>
-                                            </div>
-                                        </div>
-
-                                        <!-- Product Description -->
-                                        <div class="product-description">
-                                            <span>{#BOOK_GENRE#}</span>
-                                            <a href="/details">
-                                                <h6>{#BOOK_NAME#}</h6>
-                                            </a>
-                                            <p class="product-price">
-                                                <span class="old-price">$75.00</span> $55.00
-                                            </p>
-
-                                            <!-- Hover Content -->
-                                            <div class="hover-content">
-                                                <!-- Add to Cart -->
-                                                <div class="add-to-cart-btn">
-                                                    <a href="/details" class="btn essence-btn">Know More</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Single Product -->
-                                <div class="col-12 col-sm-6 col-lg-4">
-                                    <div class="single-product-wrapper">
-                                        <!-- Product Image -->
-                                        <div class="product-img">
-                                            <img src="./assets/images/book.jpg" alt="" />
-                                            <!-- Hover Thumb -->
-                                            <img class="hover-img" src="./assets/images/book.jpg" alt="" />
-
-                                            <!-- Product Badge -->
-                                            <div class="product-badge offer-badge">
-                                                <span>-30%</span>
-                                            </div>
-                                            <!-- Favourite -->
-                                            <div class="product-favourite">
-                                                <a href="#" class="favme fa fa-heart"></a>
-                                            </div>
-                                        </div>
-
-                                        <!-- Product Description -->
-                                        <div class="product-description">
-                                            <span>{#BOOK_GENRE#}</span>
-                                            <a href="/details">
-                                                <h6>{#BOOK_NAME#}</h6>
-                                            </a>
-                                            <p class="product-price">
-                                                <span class="old-price">$75.00</span> $55.00
-                                            </p>
-
-                                            <!-- Hover Content -->
-                                            <div class="hover-content">
-                                                <!-- Add to Cart -->
-                                                <div class="add-to-cart-btn">
-                                                    <a href="/details" class="btn essence-btn">Know More</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Single Product -->
-                                <div class="col-12 col-sm-6 col-lg-4">
-                                    <div class="single-product-wrapper">
-                                        <!-- Product Image -->
-                                        <div class="product-img">
-                                            <img src="./assets/images/book.jpg" alt="" />
-                                            <!-- Hover Thumb -->
-                                            <img class="hover-img" src="./assets/images/book.jpg" alt="" />
-
-                                            <!-- Product Badge -->
-                                            <div class="product-badge offer-badge">
-                                                <span>-30%</span>
-                                            </div>
-                                            <!-- Favourite -->
-                                            <div class="product-favourite">
-                                                <a href="#" class="favme fa fa-heart"></a>
-                                            </div>
-                                        </div>
-
-                                        <!-- Product Description -->
-                                        <div class="product-description">
-                                            <span>{#BOOK_GENRE#}</span>
-                                            <a href="/details">
-                                                <h6>{#BOOK_NAME#}</h6>
-                                            </a>
-                                            <p class="product-price">
-                                                <span class="old-price">$75.00</span> $55.00
-                                            </p>
-
-                                            <!-- Hover Content -->
-                                            <div class="hover-content">
-                                                <!-- Add to Cart -->
-                                                <div class="add-to-cart-btn">
-                                                    <a href="/details" class="btn essence-btn">Know More</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Single Product -->
-                                <div class="col-12 col-sm-6 col-lg-4">
-                                    <div class="single-product-wrapper">
-                                        <!-- Product Image -->
-                                        <div class="product-img">
-                                            <img src="./assets/images/book.jpg" alt="" />
-                                            <!-- Hover Thumb -->
-                                            <img class="hover-img" src="./assets/images/book.jpg" alt="" />
-
-                                            <!-- Product Badge -->
-                                            <div class="product-badge offer-badge">
-                                                <span>-30%</span>
-                                            </div>
-                                            <!-- Favourite -->
-                                            <div class="product-favourite">
-                                                <a href="#" class="favme fa fa-heart"></a>
-                                            </div>
-                                        </div>
-
-                                        <!-- Product Description -->
-                                        <div class="product-description">
-                                            <span>{#BOOK_GENRE#}</span>
-                                            <a href="/details">
-                                                <h6>{#BOOK_NAME#}</h6>
-                                            </a>
-                                            <p class="product-price">
-                                                <span class="old-price">$75.00</span> $55.00
-                                            </p>
-
-                                            <!-- Hover Content -->
-                                            <div class="hover-content">
-                                                <!-- Add to Cart -->
-                                                <div class="add-to-cart-btn">
-                                                    <a href="/details" class="btn essence-btn">Know More</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <% }); %>
                             </div>
                         </div>
                         <!-- Pagination -->

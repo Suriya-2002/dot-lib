@@ -46,8 +46,8 @@
 
         <div class="header-meta d-flex clearfix justify-content-end">
             <div class="search-area">
-                <form action="#" method="post">
-                    <input type="search" name="search" id="headerSearch" placeholder="Type for search" />
+                <form action="/search" method="POST">
+                    <input type="search" name="searchQuery" id="headerSearch" placeholder="Type for search" />
                     <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </form>
             </div>
@@ -83,7 +83,7 @@
             <% cart.items.forEach(item => { %>
             <div class="single-cart-item">
                 <a href="#" class="product-image">
-                    <img src="<%= item.volumeInfo.imageLinks.medium %>" class="cart-thumb" alt="" />
+                    <img src="<%= item.volumeInfo.imageLinks.thumbnail %>" class="cart-thumb" alt="" />
 
                     <div class="cart-item-desc">
                         <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
