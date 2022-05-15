@@ -8,7 +8,7 @@ router.get('/', shopController.getIndexPage);
 
 router.post('/search', shopController.postSearchQuery);
 
-router.get('/details', shopController.getDetailsPage);
+router.get('/details/:itemID', shopController.getDetailsPage);
 router.get('/checkout', shopController.getCheckoutPage);
 
 export { router };

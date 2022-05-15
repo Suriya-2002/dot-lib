@@ -40,8 +40,8 @@
             loop: true,
             nav: true,
             navText: [
-                "<img src='./assets/images/long-arrow-left.svg' alt=''>",
-                "<img src='./assets/images/long-arrow-right.svg' alt=''>",
+                "<img src='/assets/images/long-arrow-left.svg' alt=''>",
+                "<img src='/assets/images/long-arrow-right.svg' alt=''>",
             ],
             dots: false,
             autoplay: true,

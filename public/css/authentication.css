@@ -690,7 +690,7 @@ body {
 }
 
 .authentication-page {
-    background-image: url('./../assets/images/authentication-background.png');
+    background-image: url('/assets/images/authentication-background.png');
     background-size: cover;
     background-position: center;
     width: 100vw;

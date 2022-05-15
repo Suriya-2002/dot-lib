@@ -60,8 +60,17 @@ export const postSearchQuery = async (req, res, next) => {
 
 export const getDetailsPage = async (req, res, next) => {
     try {
+        const { itemID } = req.params;
+        const URL = `https://www.googleapis.com/books/v1/volumes/${itemID}`;
+
+        const response = await fetch(URL);
+        const itemData = await response.json();
+
+        console.log(itemData);
+
         const cart = await fetchCartItems();
-        res.render('details', { cart });
+
+        res.render('details', { cart, itemData });
     } catch (error) {
         throw error;
     }

@@ -3,10 +3,10 @@
     <head>
         <%- include('./includes/head.ejs', {includeJS: true}) %>
 
-        <title>.lib - {#BOOK_NAME#}</title>
+        <title>.lib - <%= itemData.volumeInfo.title %></title>
 
-        <link rel="stylesheet" href="./css/core-style.css" />
-        <link rel="stylesheet" href="./css/style.css" />
+        <link rel="stylesheet" href="/css/core-style.css" />
+        <link rel="stylesheet" href="/css/style.css" />
     </head>
 
     <body>
@@ -16,17 +16,18 @@
             <!-- Single Product Thumb -->
             <div class="single_product_thumb clearfix">
                 <div class="product_thumbnail_slides owl-carousel">
-                    <img src="./assets/images/book.jpg" alt="" />
-                    <img src="./assets/images/book.jpg" alt="" />
-                    <img src="./assets/images/book.jpg" alt="" />
+                    <img src="<%= itemData.volumeInfo.imageLinks.thumbnail %>" alt="" />
+                    <img src="<%= itemData.volumeInfo.imageLinks.large %>" alt="" />
                 </div>
             </div>
 
             <div class="single_product_desc clearfix">
-                <span>{#BOOK_GENRE#}</span>
-                <h2>{#BOOK_NAME#}</h2>
+                <% if (itemData.volumeInfo.categories) { %>
+                <span><%= itemData.volumeInfo.categories[0] %></span>
+                <% } %>
+                <h2><%= itemData.volumeInfo.title %></h2>
                 <p class="product-price"><span class="old-price">$65.00</span> $49.00</p>
-                <p class="product-desc">{#BOOK_DESCRIPTION#}</p>
+                <p class="product-desc"><%- itemData.volumeInfo.description %></p>
 
                 <form class="cart-form clearfix" method="post">
                     <div class="select-box d-flex mt-50 mb-30">
