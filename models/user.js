@@ -24,12 +24,14 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+const auth = getAuth();
+const db = getFirestore();
 
 const updateState = async () => {
     try {
-        const userID = auth.currentUser.uid;
+        const userID = auth.currentUser?.uid;
+        if (!userID) return;
+
         const userDocumentReference = doc(db, 'users', userID);
         const userDocument = await getDoc(userDocumentReference);
 
@@ -74,6 +76,15 @@ export const authenticationSignUp = async (name, email, password) => {
     }
 };
 
+export const autoAuthenticateUser = callback => {
+    const removeListener = onAuthStateChanged(auth, signedInUser => {
+        removeListener();
+
+        if (!signedInUser) return callback(false);
+        callback(true);
+    });
+};
+
 export const fetchCartItems = async () => {
     try {
         const fileContents = await fs.promises.readFile(path.join(rootDirectory, 'state.json'));
@@ -94,7 +105,9 @@ export const fetchCartItems = async () => {
 
 export const addToCart = async itemID => {
     try {
-        const userID = auth.currentUser.uid;
+        const userID = auth.currentUser?.uid;
+        if (!userID) return;
+
         const userDocumentReference = doc(db, 'users', userID);
 
         await updateDoc(userDocumentReference, {

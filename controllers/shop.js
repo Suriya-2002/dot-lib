@@ -5,7 +5,10 @@ import * as user from './../models/user.js';
 export const getIndexPage = async (req, res, next) => {
     try {
         const cart = await user.fetchCartItems();
-        res.render('index', { cart });
+
+        user.autoAuthenticateUser(async signedIn => {
+            res.render('index', { cart, signedIn });
+        });
     } catch (error) {
         throw error;
     }
@@ -18,7 +21,9 @@ export const postSearchQuery = async (req, res, next) => {
 
         const cart = await user.fetchCartItems();
 
-        res.render('search', { cart, searchQuery, searchResults });
+        user.autoAuthenticateUser(async signedIn => {
+            res.render('search', { cart, searchQuery, searchResults, signedIn });
+        });
     } catch (error) {
         throw error;
     }
@@ -45,7 +50,9 @@ export const getDetailsPage = async (req, res, next) => {
 
         const cart = await user.fetchCartItems();
 
-        res.render('details', { cart, itemData });
+        user.autoAuthenticateUser(async signedIn => {
+            res.render('details', { cart, itemData, signedIn });
+        });
     } catch (error) {
         throw error;
     }
@@ -54,7 +61,10 @@ export const getDetailsPage = async (req, res, next) => {
 export const getCheckoutPage = async (req, res, next) => {
     try {
         const cart = await user.fetchCartItems();
-        res.render('checkout', { cart });
+
+        user.autoAuthenticateUser(async signedIn => {
+            res.render('checkout', { cart, signedIn });
+        });
     } catch (error) {
         throw error;
     }
