@@ -2,10 +2,16 @@ import fs from 'fs';
 import path from 'path';
 
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import {
+    getAuth,
+    onAuthStateChanged,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+} from 'firebase/auth';
+import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
+import axios from 'axios';
 
-import { rootDirectory } from './../utilities.js';
+import { rootDirectory, asyncForEach } from './../utilities.js';
 
 const firebaseConfig = {
     apiKey: 'AIzaSyC0Knk7W5pfY4eRlM0vNMbYznV47fBHAuY',
@@ -17,44 +23,20 @@ const firebaseConfig = {
     measurementId: 'G-D438YFH6TJ',
 };
 
-const state = {
-    userID: '',
-    name: '',
-    email: '',
-    cart: {
-        total: 0,
-        discount: 0,
-        subtotal: 0,
-        items: [],
-    },
-};
-
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-const updateState = async updatedState => {
+const updateState = async () => {
     try {
-        state.name = updatedState.name;
-        state.email = updatedState.email;
-
-        state.cart.total = updatedState.cart.total;
-        state.cart.discount = updatedState.cart.discount;
-        state.cart.subtotal = updatedState.cart.subtotal;
-        state.cart.items = updatedState.cart.items;
-
-        await fs.promises.writeFile(path.join(rootDirectory, 'state.json'), JSON.stringify(state));
-    } catch (error) {
-        throw error;
-    }
-};
-
-const loadPage = async () => {
-    try {
-        const userDocumentReference = doc(db, 'users', state.userID);
+        const userID = auth.currentUser.uid;
+        const userDocumentReference = doc(db, 'users', userID);
         const userDocument = await getDoc(userDocumentReference);
 
-        await updateState(userDocument.data());
+        await fs.promises.writeFile(
+            path.join(rootDirectory, 'state.json'),
+            JSON.stringify(userDocument.data())
+        );
     } catch (error) {
         throw error;
     }
@@ -62,9 +44,8 @@ const loadPage = async () => {
 
 export const authenticationSignIn = async (email, password) => {
     try {
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        state.userID = userCredential.user.uid;
-        await loadPage();
+        await signInWithEmailAndPassword(auth, email, password);
+        await updateState();
     } catch (error) {
         throw error;
     }
@@ -73,10 +54,9 @@ export const authenticationSignIn = async (email, password) => {
 export const authenticationSignUp = async (name, email, password) => {
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const userID = userCredential.user.uid;
 
-        state.userID = userCredential.user.uid;
-
-        const userDocumentReference = doc(db, 'users', state.userID);
+        const userDocumentReference = doc(db, 'users', userID);
         await setDoc(userDocumentReference, {
             name: name,
             email: email,
@@ -88,7 +68,55 @@ export const authenticationSignUp = async (name, email, password) => {
             },
         });
 
-        await loadPage();
+        await updateState();
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const fetchCartItems = async () => {
+    try {
+        const fileContents = await fs.promises.readFile(path.join(rootDirectory, 'state.json'));
+        const { cart } = JSON.parse(fileContents);
+
+        await asyncForEach(cart.items, async (item, index) => {
+            const URL = `https://www.googleapis.com/books/v1/volumes/${item}`;
+            const itemData = await axios.get(URL);
+
+            cart.items[index] = itemData.data;
+        });
+
+        return cart;
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const addToCart = async itemID => {
+    try {
+        const userID = auth.currentUser.uid;
+        const userDocumentReference = doc(db, 'users', userID);
+
+        await updateDoc(userDocumentReference, {
+            'cart.total': 1000,
+            'cart.discount': 100,
+            'cart.subtotal': 1100,
+            'cart.items': arrayUnion(itemID),
+        });
+
+        await updateState();
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const fetchBooks = async searchQuery => {
+    try {
+        const maxResults = 9;
+        const URL = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&maxResults=${maxResults}`;
+        const response = await axios.get(URL);
+
+        return response.data;
     } catch (error) {
         throw error;
     }
