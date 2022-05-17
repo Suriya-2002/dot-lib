@@ -248,315 +248,180 @@
                 </div>
             </div>
         </section>
-        <!-- ##### New Arrivals Area End ##### -->
-
-        <!-- ##### New Arrivals Area Start ##### -->
         <section id="popular-books" class="new_arrivals_area section-padding-80 clearfix">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <div class="section-heading text-center">
-                            <h2>Popular Books</h2>
+                            <h2>Fiction Book</h2>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <div class="popular-products-slides owl-carousel">
+                            <% for(var i=0;i<fiction.length;i++){%>
                             <!-- Single Product -->
-                            <div class="single-product-wrapper">
-                                <!-- Product Image -->
+                            <div class="single-product-wrapper">                                
                                 <div class="product-img">
-                                    <img src="/assets/images/book.jpg" alt="" />
-                                    <!-- Hover Thumb -->
-                                    <img class="hover-img" src="/assets/images/book.jpg" alt="" />
-                                    <!-- Favourite -->
+                                    <img src="<%=fiction[i].img%>" alt="" />                                    
+                                    <img class="hover-img" src="<%=fiction[i].img%>" alt="" />                                    
                                     <div class="product-favourite">
                                         <a href="#" class="favme fa fa-heart"></a>
                                     </div>
-                                </div>
-                                <!-- Product Description -->
+                                </div>                                
                                 <div class="product-description">
-                                    <span>{#BOOK_GENRE#}</span>
+                                    <span><%=fiction[i].genre%></span>
                                     <a href="/details">
-                                        <h6>{#BOOK_NAME#}</h6>
+                                        <h6><%=fiction[i].title%></h6>
                                     </a>
-                                    <p class="product-price">$20</p>
-
-                                    <!-- Hover Content -->
-                                    <div class="hover-content">
-                                        <!-- Know More -->
+                                    <p class="product-price">₹50</p>                                    
+                                    <div class="hover-content">                                        
                                         <div class="add-to-cart-btn">
                                             <a href="/details" class="btn essence-btn">Know More</a>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Product -->
-                            <div class="single-product-wrapper">
-                                <!-- Product Image -->
-                                <div class="product-img">
-                                    <img src="/assets/images/book.jpg" alt="" />
-                                    <!-- Hover Thumb -->
-                                    <img class="hover-img" src="/assets/images/book.jpg" alt="" />
-                                    <!-- Favourite -->
-                                    <div class="product-favourite">
-                                        <a href="#" class="favme fa fa-heart"></a>
-                                    </div>
-                                </div>
-                                <!-- Product Description -->
-                                <div class="product-description">
-                                    <span>{#BOOK_GENRE#}</span>
-                                    <a href="/details">
-                                        <h6>{#BOOK_NAME#}</h6>
-                                    </a>
-                                    <p class="product-price">$20</p>
-
-                                    <!-- Hover Content -->
-                                    <div class="hover-content">
-                                        <!-- Know More -->
-                                        <div class="add-to-cart-btn">
-                                            <a href="/details" class="btn essence-btn">Know More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Product -->
-                            <div class="single-product-wrapper">
-                                <!-- Product Image -->
-                                <div class="product-img">
-                                    <img src="/assets/images/book.jpg" alt="" />
-                                    <!-- Hover Thumb -->
-                                    <img class="hover-img" src="/assets/images/book.jpg" alt="" />
-
-                                    <!-- Product Badge -->
-                                    <div class="product-badge offer-badge">
-                                        <span>-30%</span>
-                                    </div>
-
-                                    <!-- Favourite -->
-                                    <div class="product-favourite">
-                                        <a href="#" class="favme fa fa-heart"></a>
-                                    </div>
-                                </div>
-                                <!-- Product Description -->
-                                <div class="product-description">
-                                    <span>{#BOOK_GENRE#}</span>
-                                    <a href="/details">
-                                        <h6>{#BOOK_NAME#}</h6>
-                                    </a>
-                                    <p class="product-price"><span class="old-price">$25</span> $20</p>
-
-                                    <!-- Hover Content -->
-                                    <div class="hover-content">
-                                        <!-- Know More -->
-                                        <div class="add-to-cart-btn">
-                                            <a href="/details" class="btn essence-btn">Know More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Product -->
-                            <div class="single-product-wrapper">
-                                <!-- Product Image -->
-                                <div class="product-img">
-                                    <img src="/assets/images/book.jpg" alt="" />
-                                    <!-- Hover Thumb -->
-                                    <img class="hover-img" src="/assets/images/book.jpg" alt="" />
-
-                                    <!-- Product Badge -->
-                                    <div class="product-badge new-badge">
-                                        <span>New</span>
-                                    </div>
-
-                                    <!-- Favourite -->
-                                    <div class="product-favourite">
-                                        <a href="#" class="favme fa fa-heart"></a>
-                                    </div>
-                                </div>
-                                <!-- Product Description -->
-                                <div class="product-description">
-                                    <span>{#BOOK_GENRE#}</span>
-                                    <a href="/details">
-                                        <h6>{#BOOK_NAME#}</h6>
-                                    </a>
-                                    <p class="product-price">$20</p>
-
-                                    <!-- Hover Content -->
-                                    <div class="hover-content">
-                                        <!-- Know More -->
-                                        <div class="add-to-cart-btn">
-                                            <a href="/details" class="btn essence-btn">Know More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                </div>                               
+                            </div> 
+                            <%}%>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- ##### New Arrivals Area End ##### -->
 
-        <!-- ##### New Arrivals Area Start ##### -->
-        <section id="recent-books" class="new_arrivals_area section-padding-80 clearfix">
+        <section id="popular-books" class="new_arrivals_area section-padding-80 clearfix">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <div class="section-heading text-center">
-                            <h2>Recent Books</h2>
+                            <h2>Non Fiction Book</h2>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <div class="popular-products-slides owl-carousel">
+                            <% for(var i=0;i<nonfiction.length;i++){%>
                             <!-- Single Product -->
-                            <div class="single-product-wrapper">
-                                <!-- Product Image -->
+                            <div class="single-product-wrapper">                                
                                 <div class="product-img">
-                                    <img src="/assets/images/book.jpg" alt="" />
-                                    <!-- Hover Thumb -->
-                                    <img class="hover-img" src="/assets/images/book.jpg" alt="" />
-                                    <!-- Favourite -->
+                                    <img src="<%=nonfiction[i].img%>" alt="" />                                    
+                                    <img class="hover-img" src="<%=nonfiction[i].img%>" alt="" />                                    
                                     <div class="product-favourite">
                                         <a href="#" class="favme fa fa-heart"></a>
                                     </div>
-                                </div>
-                                <!-- Product Description -->
+                                </div>                                
                                 <div class="product-description">
-                                    <span>{#BOOK_GENRE#}</span>
+                                    <span><%=nonfiction[i].genre%></span>
                                     <a href="/details">
-                                        <h6>{#BOOK_NAME#}</h6>
+                                        <h6><%=nonfiction[i].title%></h6>
                                     </a>
-                                    <p class="product-price">$20</p>
-
-                                    <!-- Hover Content -->
-                                    <div class="hover-content">
-                                        <!-- Know More -->
+                                    <p class="product-price">₹50</p>                                    
+                                    <div class="hover-content">                                        
                                         <div class="add-to-cart-btn">
                                             <a href="/details" class="btn essence-btn">Know More</a>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Product -->
-                            <div class="single-product-wrapper">
-                                <!-- Product Image -->
-                                <div class="product-img">
-                                    <img src="/assets/images/book.jpg" alt="" />
-                                    <!-- Hover Thumb -->
-                                    <img class="hover-img" src="/assets/images/book.jpg" alt="" />
-                                    <!-- Favourite -->
-                                    <div class="product-favourite">
-                                        <a href="#" class="favme fa fa-heart"></a>
-                                    </div>
-                                </div>
-                                <!-- Product Description -->
-                                <div class="product-description">
-                                    <span>{#BOOK_GENRE#}</span>
-                                    <a href="/details">
-                                        <h6>{#BOOK_NAME#}</h6>
-                                    </a>
-                                    <p class="product-price">$20</p>
-
-                                    <!-- Hover Content -->
-                                    <div class="hover-content">
-                                        <!-- Know More -->
-                                        <div class="add-to-cart-btn">
-                                            <a href="/details" class="btn essence-btn">Know More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Product -->
-                            <div class="single-product-wrapper">
-                                <!-- Product Image -->
-                                <div class="product-img">
-                                    <img src="/assets/images/book.jpg" alt="" />
-                                    <!-- Hover Thumb -->
-                                    <img class="hover-img" src="/assets/images/book.jpg" alt="" />
-
-                                    <!-- Product Badge -->
-                                    <div class="product-badge offer-badge">
-                                        <span>-30%</span>
-                                    </div>
-
-                                    <!-- Favourite -->
-                                    <div class="product-favourite">
-                                        <a href="#" class="favme fa fa-heart"></a>
-                                    </div>
-                                </div>
-                                <!-- Product Description -->
-                                <div class="product-description">
-                                    <span>{#BOOK_GENRE#}</span>
-                                    <a href="/details">
-                                        <h6>{#BOOK_NAME#}</h6>
-                                    </a>
-                                    <p class="product-price"><span class="old-price">$25</span> $20</p>
-
-                                    <!-- Hover Content -->
-                                    <div class="hover-content">
-                                        <!-- Know More -->
-                                        <div class="add-to-cart-btn">
-                                            <a href="/details" class="btn essence-btn">Know More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Product -->
-                            <div class="single-product-wrapper">
-                                <!-- Product Image -->
-                                <div class="product-img">
-                                    <img src="/assets/images/book.jpg" alt="" />
-                                    <!-- Hover Thumb -->
-                                    <img class="hover-img" src="/assets/images/book.jpg" alt="" />
-
-                                    <!-- Product Badge -->
-                                    <div class="product-badge new-badge">
-                                        <span>New</span>
-                                    </div>
-
-                                    <!-- Favourite -->
-                                    <div class="product-favourite">
-                                        <a href="#" class="favme fa fa-heart"></a>
-                                    </div>
-                                </div>
-                                <!-- Product Description -->
-                                <div class="product-description">
-                                    <span>{#BOOK_GENRE#}</span>
-                                    <a href="/details">
-                                        <h6>{#BOOK_NAME#}</h6>
-                                    </a>
-                                    <p class="product-price">$20</p>
-
-                                    <!-- Hover Content -->
-                                    <div class="hover-content">
-                                        <!-- Know More -->
-                                        <div class="add-to-cart-btn">
-                                            <a href="/details" class="btn essence-btn">Know More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                </div>                               
+                            </div> 
+                            <%}%>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- ##### New Arrivals Area End ##### -->
+        <section id="popular-books" class="new_arrivals_area section-padding-80 clearfix">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-heading text-center">
+                            <h2>Highest Rated Fiction Book</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="popular-products-slides owl-carousel">
+                            <% for(var i=0;i<bestFiction.length;i++){%>
+                            <!-- Single Product -->
+                            <div class="single-product-wrapper">                                
+                                <div class="product-img">
+                                    <img src="<%=bestFiction[i].img%>" alt="" />                                    
+                                    <img class="hover-img" src="<%=bestFiction[i].img%>" alt="" />                                    
+                                    <div class="product-favourite">
+                                        <a href="#" class="favme fa fa-heart"></a>
+                                    </div>
+                                </div>                                
+                                <div class="product-description">
+                                    <span><%=bestFiction[i].genre%></span>
+                                    <a href="/details">
+                                        <h6><%=bestFiction[i].title%></h6>
+                                    </a>
+                                    <p class="product-price">₹50</p>                                    
+                                    <div class="hover-content">                                        
+                                        <div class="add-to-cart-btn">
+                                            <a href="/details" class="btn essence-btn">Know More</a>
+                                        </div>
+                                    </div>
+                                </div>                               
+                            </div> 
+                            <%}%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="popular-books" class="new_arrivals_area section-padding-80 clearfix">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-heading text-center">
+                            <h2>Highest Rated Non Fiction Book</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="popular-products-slides owl-carousel">
+                            <% for(var i=0;i<bestNonFiction.length;i++){%>
+                            <!-- Single Product -->
+                            <div class="single-product-wrapper">                                
+                                <div class="product-img">
+                                    <img src="<%=bestNonFiction[i].img%>" alt="" />                                    
+                                    <img class="hover-img" src="<%=bestNonFiction[i].img%>" alt="" />                                    
+                                    <div class="product-favourite">
+                                        <a href="#" class="favme fa fa-heart"></a>
+                                    </div>
+                                </div>                                
+                                <div class="product-description">
+                                    <span><%=bestNonFiction[i].genre%></span>
+                                    <a href="/details">
+                                        <h6><%=bestNonFiction[i].title%></h6>
+                                    </a>
+                                    <p class="product-price">₹50</p>                                    
+                                    <div class="hover-content">                                        
+                                        <div class="add-to-cart-btn">
+                                            <a href="/details" class="btn essence-btn">Know More</a>
+                                        </div>
+                                    </div>
+                                </div>                               
+                            </div> 
+                            <%}%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <%- include('./includes/footer.ejs') %>
     </body>
