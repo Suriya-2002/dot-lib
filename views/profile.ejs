@@ -18,7 +18,7 @@
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
                         <div class="page-title text-center">
-                            <h2>Checkout</h2>
+                            <h2>Profile</h2>
                         </div>
                     </div>
                 </div>
@@ -33,10 +33,10 @@
                     <div class="col-12 col-md-6">
                         <div class="checkout_details_area mt-50 clearfix">
                             <div class="cart-page-heading mb-30">
-                                <h5>Billing Address</h5>
+                                <h5>Enter Your Details</h5>
                             </div>
 
-                            <form action="#" method="post">
+                            <form action="/profileDetails" method="post">
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="first_name">First Name <span>*</span></label>
@@ -59,17 +59,17 @@
                                         />
                                     </div>
                                     <div class="col-12 mb-3">
-                                        <label for="company">Company Name</label>
-                                        <input type="text" class="form-control" id="company" value="" />
+                                        <label for="company">Contact Number<span>*</span></label>
+                                        <input type="number" class="form-control" id="company" value="" />
                                     </div>
                                     <div class="col-12 mb-3">
-                                        <label for="country">Country <span>*</span></label>
+                                        <label for="country">Country<span>*</span></label>
                                         <select class="w-100" id="country">
+                                            <option value="ind">India</option>
                                             <option value="usa">United States</option>
                                             <option value="uk">United Kingdom</option>
                                             <option value="ger">Germany</option>
-                                            <option value="fra">France</option>
-                                            <option value="ind">India</option>
+                                            <option value="fra">France</option>                                           
                                             <option value="aus">Australia</option>
                                             <option value="bra">Brazil</option>
                                             <option value="cana">Canada</option>
@@ -102,16 +102,7 @@
                                         <label for="state">Province <span>*</span></label>
                                         <input type="text" class="form-control" id="state" value="" />
                                     </div>
-                                    <div class="col-12 mb-3">
-                                        <label for="phone_number">Phone No <span>*</span></label>
-                                        <input
-                                            type="number"
-                                            class="form-control"
-                                            id="phone_number"
-                                            min="0"
-                                            value=""
-                                        />
-                                    </div>
+                                   
                                     <div class="col-12 mb-4">
                                         <label for="email_address">Email Address <span>*</span></label>
                                         <input
@@ -121,30 +112,8 @@
                                             value=""
                                         />
                                     </div>
-
-                                    <div class="col-12">
-                                        <div class="custom-control custom-checkbox d-block mb-2">
-                                            <input
-                                                type="checkbox"
-                                                class="custom-control-input"
-                                                id="customCheck1"
-                                            />
-                                            <label class="custom-control-label" for="customCheck1"
-                                                >Save Details</label
-                                            >
-                                        </div>
-                                        <div class="custom-control custom-checkbox d-block mb-2">
-                                            <input
-                                                type="checkbox"
-                                                class="custom-control-input"
-                                                id="customCheck2"
-                                            />
-                                            <label class="custom-control-label" for="customCheck2"
-                                                >Terms and conitions</label
-                                            >
-                                        </div>
-                                    </div>
                                 </div>
+                                <a href="/profileDetails" class="btn essence-btn">Update Profile</a>
                             </form>
                         </div>
                     </div>
@@ -152,18 +121,18 @@
                     <div class="col-12 col-md-6 col-lg-5 ml-lg-auto">
                         <div class="order-details-confirmation">
                             <div class="cart-page-heading">
-                                <h5>Your Order</h5>
-                                <p>The Details</p>
+                                <h5>Order History</h5>
+                                <p>List of Recent Purchases</p>
                             </div>
 
                             <ul class="order-details-form mb-4">
                                 <li><span>Product</span> <span>Total</span></li>
-                                <li><span>Atomic Habits</span> <span>$59.90</span></li>
-                                <li><span>Subtotal</span> <span>$59.90</span></li>
-                                <li><span>Total</span> <span>$59.90</span></li>
+                                <li><span>Atomic Habits</span> <span>₹50.00</span></li>
+                                <li><span>Outliers</span> <span>₹50.00</span></li>
+                                <li><span>Jungle Book</span> <span>₹100.00</span></li>
                             </ul>
 
-                            <a href="#" class="btn essence-btn">Place Order</a>
+                            
                         </div>
                     </div>
                 </div>

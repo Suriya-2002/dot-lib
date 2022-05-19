@@ -123,6 +123,19 @@ export const getDetailsPage = async (req, res, next) => {
         throw error;
     }
 };
+export const getProfileData = async (req, res, next) => {
+    try {
+        const cart = await user.fetchCartItems();
+
+        user.autoAuthenticateUser(async signedIn => {
+
+            console.log(signedIn)
+            res.render('profile', { cart, signedIn });
+        });
+    } catch (error) {
+        throw error;
+    }
+};
 
 export const getCheckoutPage = async (req, res, next) => {
     try {
