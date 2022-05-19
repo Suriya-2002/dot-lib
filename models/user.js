@@ -8,7 +8,7 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, arrayUnion } from 'firebase/firestore';
 import axios from 'axios';
 
 import { rootDirectory, asyncForEach } from './../utilities.js';
@@ -103,7 +103,7 @@ export const fetchCartItems = async () => {
     }
 };
 
-export const addToCart = async itemID => {
+export const addToCart = async ({ itemID, price, discount }) => {
     try {
         const userID = auth.currentUser?.uid;
         if (!userID) return;
@@ -111,9 +111,9 @@ export const addToCart = async itemID => {
         const userDocumentReference = doc(db, 'users', userID);
 
         await updateDoc(userDocumentReference, {
-            'cart.total': 1000,
-            'cart.discount': 100,
-            'cart.subtotal': 1100,
+            'cart.total': increment(price),
+            'cart.discount': increment(Number(discount)),
+            'cart.subtotal': increment(Number(price) + Number(discount)),
             'cart.items': arrayUnion(itemID),
         });
 

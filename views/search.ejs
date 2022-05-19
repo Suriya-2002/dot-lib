@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <%- include('./includes/head.ejs', {includeJS: true}) %>
+        <%- include('./includes/head.ejs', { includeJS: true, signedIn }) %>
 
         <title>.lib - <%= searchQuery %></title>
 
@@ -189,9 +189,7 @@
                                             <a href="/details/<%= item.id %>">
                                                 <h6><%= item.volumeInfo.title %></h6>
                                             </a>
-                                            <p class="product-price">
-                                                Renting Starts at ₹50
-                                            </p>
+                                            <p class="product-price">Renting Starts at &#8377;50</p>
 
                                             <!-- Hover Content -->
                                             <div class="hover-content">
