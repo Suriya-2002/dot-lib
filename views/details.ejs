@@ -26,28 +26,22 @@
                 <span><%= itemData.volumeInfo.categories[0] %></span>
                 <% } %>
                 <h2><%= itemData.volumeInfo.title %></h2>
-                <div class="select-box d-flex mt-50 mb-30">
-                    <select name="select" id="productSize" onchange="selectWeek()" class="mr-5">
-                        <option selected> Choose Renting Period </option>
-                        <option value="50" >Valid for: 1 Week</option>
-                        <option value="100">Valid for: 2 Weeks</option>
-                        <option value="150">Valid for: 3 Weeks</option>
-                        <option value="200">Valid for: 1 Month</option>
-                    </select>
-                </div>
-                <p class="product-price">₹</p>
-                <p class="product-price" id="product-price"></p>
+              
                 <p class="product-desc"><%- itemData.volumeInfo.description %></p>
 
                 <form class="cart-form clearfix" action="/add-to-cart" method="POST">
                     <div class="select-box d-flex mt-50 mb-30">
-                        <select name="select" id="productSize" class="mr-5">
-                            <option value="value">Valid for: 1 Week</option>
-                            <option value="value">Valid for: 2 Weeks</option>
-                            <option value="value">Valid for: 3 Weeks</option>
-                            <option value="value">Valid for: 1 Month</option>
+                        <select name="select" id="productSize" onchange="selectWeek()" class="mr-5">
+                            <option selected> Choose Renting Period </option>
+                            <option value="50" >Valid for: 1 Week</option>
+                            <option value="100">Valid for: 2 Weeks</option>
+                            <option value="150">Valid for: 3 Weeks</option>
+                            <option value="200">Valid for: 1 Month</option>
                         </select>
                     </div>
+                    <p class="product-price">₹</p>
+                    <p class="product-price" id="product-price"></p>
+                    
 
                     <input type="text" name="itemID" value="<%= itemData.id %>" hidden />
 
@@ -70,7 +64,9 @@
         function selectWeek() {
         var myList = document.getElementById("productSize");
         console.log(myList)
-        document.getElementById("product-price").innerHTML = myList.options[myList.selectedIndex].value;
+        const price =  document.getElementById("product-price");
+        price.innerHTML = myList.options[myList.selectedIndex].value;
+        console.log(price.innerHTML)
         
         }
         </script>
