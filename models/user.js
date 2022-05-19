@@ -134,3 +134,15 @@ export const fetchBooks = async searchQuery => {
         throw error;
     }
 };
+
+export const fetchBooksByGenre = async genre => {
+    try {
+        const maxResults = 10;
+        const URL = `https://www.googleapis.com/books/v1/volumes?q=+subject:${genre}&maxResults=${maxResults}`;
+        const response = await axios.get(URL);
+
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+};
