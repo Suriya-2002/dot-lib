@@ -6,11 +6,13 @@ export const getIndexPage = async (req, res, next) => {
     try {
         const fictionBooks = await user.fetchBooksByGenre('fiction');
         const romanceBooks = await user.fetchBooksByGenre('romance');
+        const nonfictionBooks = await user.fetchBooksByGenre('nonfiction');
+        const healthBooks = await user.fetchBooksByGenre('health');
         let cart;
 
         user.autoAuthenticateUser(async signedIn => {
             if (signedIn) cart = await user.fetchCartItems();
-            res.render('index', { cart, signedIn, fictionBooks, romanceBooks });
+            res.render('index', { cart, signedIn, fictionBooks, romanceBooks,nonfictionBooks, healthBooks });
         });
     } catch (error) {
         throw error;
