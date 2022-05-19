@@ -1298,6 +1298,9 @@ img {
     text-decoration: line-through;
     margin-right: 15px;
 }
+.product-price{
+    display: inline;
+}
 .single_product_details_area .single_product_desc .product-desc {
     font-size: 16px;
 }
