@@ -10,5 +10,6 @@ router.get('/profile', shopController.getProfileData);
 
 router.post('/search', shopController.postSearchQuery);
 router.post('/add-to-cart', shopController.postAddToCart);
+router.post('/delete-cart-item', shopController.postDeleteCartItem);
 
 export { router };

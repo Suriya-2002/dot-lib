@@ -8,7 +8,16 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, arrayUnion } from 'firebase/firestore';
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    setDoc,
+    updateDoc,
+    increment,
+    arrayUnion,
+    arrayRemove,
+} from 'firebase/firestore';
 import axios from 'axios';
 
 import { rootDirectory, asyncForEach } from './../utilities.js';
@@ -91,10 +100,12 @@ export const fetchCartItems = async () => {
         const { cart } = JSON.parse(fileContents);
 
         await asyncForEach(cart.items, async (item, index) => {
-            const URL = `https://www.googleapis.com/books/v1/volumes/${item}`;
+            const URL = `https://www.googleapis.com/books/v1/volumes/${item.itemID}`;
             const itemData = await axios.get(URL);
+            const price = cart.items[index].price;
+            const discount = cart.items[index].discount;
 
-            cart.items[index] = itemData.data;
+            cart.items[index] = { price, discount, ...itemData.data };
         });
 
         return cart;
@@ -114,7 +125,31 @@ export const addToCart = async ({ itemID, price, discount }) => {
             'cart.total': increment(price),
             'cart.discount': increment(Number(discount)),
             'cart.subtotal': increment(Number(price) + Number(discount)),
-            'cart.items': arrayUnion(itemID),
+            'cart.items': arrayUnion({
+                itemID,
+                price,
+                discount,
+            }),
+        });
+
+        await updateState();
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const deleteCartItem = async ({ itemID, price, discount }) => {
+    try {
+        const userID = auth.currentUser?.uid;
+        if (!userID) return;
+
+        const userDocumentReference = doc(db, 'users', userID);
+
+        await updateDoc(userDocumentReference, {
+            'cart.total': increment(-1 * Number(price)),
+            'cart.discount': increment(-1 * Number(discount)),
+            'cart.subtotal': increment(-1 * (Number(price) + Number(discount))),
+            'cart.items': arrayRemove({ itemID, price: Number(price), discount }),
         });
 
         await updateState();

@@ -62,9 +62,9 @@
 
     <script>
         function selectWeek() {
-            var myList = document.querySelector('#productSize');
-            document.querySelector('.product-price-value').innerHTML =
-                myList.options[myList.selectedIndex].value;
+            const myList = document.querySelector('#productSize');
+            const price = myList.options[myList.selectedIndex].value;
+            document.querySelector('.product-price-value').innerHTML = price;
         }
     </script>
 </html>

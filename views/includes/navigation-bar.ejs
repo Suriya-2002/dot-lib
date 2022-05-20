@@ -57,19 +57,28 @@
         <div class="cart-list">
             <% cart.items.forEach(item => { %>
             <div class="single-cart-item">
-                <a href="#" class="product-image">
-                    <img src="<%= item.volumeInfo.imageLinks.thumbnail %>" class="cart-thumb" alt="" />
+                <form action="/delete-cart-item" method="POST">
+                    <input type="text" name="itemID" value="<%= item.id %>" hidden />
+                    <input type="text" name="price" value="<%= item.price %>" hidden />
 
-                    <div class="cart-item-desc">
-                        <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                        <% if (item.volumeInfo.categories) { %>
-                        <span class="badge"><%= item.volumeInfo.categories[0].split('/')[0] %></span>
-                        <% } %>
-                        <h6><%= item.volumeInfo.title %></h6>
-                        <p class="color"><%= item.volumeInfo.authors[0] %></p>
-                        <p class="price">&#8377;50</p>
-                    </div>
-                </a>
+                    <button
+                        type="submit"
+                        class="product-image"
+                        style="text-align: left; border: none; outline: none; cursor: pointer"
+                    >
+                        <img src="<%= item.volumeInfo.imageLinks.thumbnail %>" class="cart-thumb" alt="" />
+
+                        <div class="cart-item-desc">
+                            <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
+                            <% if (item.volumeInfo.categories) { %>
+                            <span class="badge"><%= item.volumeInfo.categories[0].split('/')[0] %></span>
+                            <% } %>
+                            <h6><%= item.volumeInfo.title %></h6>
+                            <p class="color"><%= item.volumeInfo.authors[0] %></p>
+                            <p class="price">&#8377;<%= item.price %></p>
+                        </div>
+                    </button>
+                </form>
             </div>
             <% }); %>
         </div>

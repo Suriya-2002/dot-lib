@@ -6,13 +6,13 @@ export const getIndexPage = async (req, res, next) => {
     try {
         const fictionBooks = await user.fetchBooksByGenre('fiction');
         const romanceBooks = await user.fetchBooksByGenre('romance');
-        const nonfictionBooks = await user.fetchBooksByGenre('nonfiction');
+        const nonFictionBooks = await user.fetchBooksByGenre('nonfiction');
         const healthBooks = await user.fetchBooksByGenre('health');
         let cart;
 
         user.autoAuthenticateUser(async signedIn => {
             if (signedIn) cart = await user.fetchCartItems();
-            res.render('index', { cart, signedIn, fictionBooks, romanceBooks,nonfictionBooks, healthBooks });
+            res.render('index', { cart, signedIn, fictionBooks, romanceBooks, nonFictionBooks, healthBooks });
         });
     } catch (error) {
         throw error;
@@ -42,8 +42,22 @@ export const postAddToCart = async (req, res, next) => {
         const discountPercentage = 10;
         const discount = (Number(price) * Number(discountPercentage)) / 100;
 
-        await user.addToCart({ itemID, price, discount });
+        await user.addToCart({ itemID, price: Number(price), discount });
 
+        res.redirect('/');
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const postDeleteCartItem = async (req, res, next) => {
+    try {
+        const { itemID, price } = req.body;
+
+        const discountPercentage = 10;
+        const discount = (Number(price) * Number(discountPercentage)) / 100;
+
+        await user.deleteCartItem({ itemID, price, discount });
         res.redirect(`/details/${itemID}`);
     } catch (error) {
         throw error;
