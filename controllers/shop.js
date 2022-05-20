@@ -13,7 +13,6 @@ export const getIndexPage = async (req, res, next) => {
         const thrillerBooks = await user.fetchBooksByGenre('thriller');
         const mysteryBooks = await user.fetchBooksByGenre('mystery');
         const historyBooks = await user.fetchBooksByGenre('history');
-
         const fantasyBooks = await user.fetchBooksByGenre('fantasy');
         let cart;
 
@@ -103,13 +102,30 @@ export const getDetailsPage = async (req, res, next) => {
     }
 };
 
-export const getProfileData = async (req, res, next) => {
+export const getProfilePage = async (req, res, next) => {
     try {
+        const details = await user.fetchProfileDetails();
         let cart;
 
         user.autoAuthenticateUser(async signedIn => {
             if (signedIn) cart = await user.fetchCartItems();
-            res.render('profile', { cart, signedIn });
+            res.render('profile', { cart, signedIn, details });
+        });
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const postProfile = async (req, res, next) => {
+    try {
+        const { firstName, lastName, contactNumber, email, country, postcode } = req.body;
+        let cart;
+
+        await user.updateProfile({ firstName, lastName, contactNumber, email, country, postcode });
+
+        user.autoAuthenticateUser(async signedIn => {
+            if (signedIn) cart = await user.fetchCartItems();
+            res.redirect('/profile');
         });
     } catch (error) {
         throw error;
@@ -141,12 +157,14 @@ export const paymentPage = async (req, res, next) => {
         res.status(500).json({ error: e.message });
     }
 };
-export const postUpdatePreferences = async (req, res, next) => {
+
+export const postPreferences = async (req, res, next) => {
     try {
         const { genre, bookType, numberOfPages } = req.body;
         let cart;
 
         await user.updatePreference({ genre, bookType, numberOfPages });
+        await user.fetchRecommendations();
 
         user.autoAuthenticateUser(async signedIn => {
             if (signedIn) cart = await user.fetchCartItems();

@@ -36,7 +36,7 @@
                                 <h5>Enter Your Details</h5>
                             </div>
 
-                            <form action="/profile" method="POST">
+                            <form action="/update-profile" method="POST">
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="first_name">First Name <span>*</span></label>
@@ -44,7 +44,8 @@
                                             type="text"
                                             class="form-control"
                                             id="first_name"
-                                            value=""
+                                            name="firstName"
+                                            value="<%= details?.firstName ? details.firstName : '' %>"
                                             required
                                         />
                                     </div>
@@ -54,13 +55,20 @@
                                             type="text"
                                             class="form-control"
                                             id="last_name"
-                                            value=""
+                                            name="lastName"
+                                            value="<%= details?.lastName ? details.lastName : '' %>"
                                             required
                                         />
                                     </div>
                                     <div class="col-12 mb-3">
                                         <label for="company">Contact Number<span>*</span></label>
-                                        <input type="number" class="form-control" id="company" value="" />
+                                        <input
+                                            type="number"
+                                            class="form-control"
+                                            id="company"
+                                            name="contactNumber"
+                                            value="<%= details?.contactNumber ? details.contactNumber : '' %>"
+                                        />
                                     </div>
                                     <div class="col-12 mb-4">
                                         <label for="email_address">Email Address <span>*</span></label>
@@ -68,40 +76,72 @@
                                             type="email"
                                             class="form-control"
                                             id="email_address"
-                                            value=""
+                                            name="email"
+                                            value="<%= details?.email ? details.email : '' %>"
                                         />
                                     </div>
                                     <div class="col-12 mb-3">
                                         <label for="country">Country<span>*</span></label>
-                                        <select class="w-100" id="country">
-                                            <option value="ind">India</option>
-                                            <option value="usa">United States</option>
-                                            <option value="uk">United Kingdom</option>
-                                            <option value="ger">Germany</option>
-                                            <option value="fra">France</option>
-                                            <option value="aus">Australia</option>
-                                            <option value="bra">Brazil</option>
-                                            <option value="cana">Canada</option>
+                                        <select class="w-100" id="country" name="country">
+                                            <option
+                                                <%= details?.country === 'India' ? 'selected' : '' %>"
+                                                value="India"
+                                            >
+                                                India
+                                            </option>
+                                            <option
+                                                <%= details?.country === 'United States' ? 'selected' : '' %>"
+                                                value="United States"
+                                            >
+                                                United States
+                                            </option>
+                                            <option
+                                                <%= details?.country === 'United Kingdom' ? 'selected' : '' %>"
+                                                value="United Kingdom"
+                                            >
+                                                United Kingdom
+                                            </option>
+                                            <option
+                                                <%= details?.country === 'Germany' ? 'selected' : '' %>"
+                                                value="Germany"
+                                            >
+                                                Germany
+                                            </option>
+                                            <option
+                                                <%= details?.country === 'France' ? 'selected' : '' %>"
+                                                value="France"
+                                            >
+                                                France
+                                            </option>
+                                            <option
+                                                <%= details?.country === 'Australia' ? 'selected' : '' %>"
+                                                value="Australia"
+                                            >
+                                                Australia
+                                            </option>
+                                            <option
+                                                <%= details?.country === 'Brazil' ? 'selected' : '' %>"
+                                                value="Brazil"
+                                            >
+                                                Brazil
+                                            </option>
+                                            <option
+                                                <%= details?.country === 'Canada' ? 'selected' : '' %>"
+                                                value="Canada"
+                                            >
+                                                Canada
+                                            </option>
                                         </select>
                                     </div>
                                     <div class="col-12 mb-3">
-                                        <label for="street_address">Address <span>*</span></label>
-                                        <input
-                                            type="text"
-                                            class="form-control mb-3"
-                                            id="street_address"
-                                            value=""
-                                        />
+                                        <label for="postcode">Postcode <span>*</span></label>
                                         <input
                                             type="text"
                                             class="form-control"
-                                            id="street_address2"
-                                            value=""
+                                            id="postcode"
+                                            name="postcode"
+                                            value="<%= details?.postcode ? details?.postcode : '' %>"
                                         />
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <label for="postcode">Postcode <span>*</span></label>
-                                        <input type="text" class="form-control" id="postcode" value="" />
                                     </div>
                                 </div>
                                 <button type="submit" name="update-profile" value="5" class="btn essence-btn">
