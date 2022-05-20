@@ -8,11 +8,18 @@ export const getIndexPage = async (req, res, next) => {
         const romanceBooks = await user.fetchBooksByGenre('romance');
         const nonFictionBooks = await user.fetchBooksByGenre('nonfiction');
         const healthBooks = await user.fetchBooksByGenre('health');
+        const actionBooks = await user.fetchBooksByGenre('action');
+        const scienceBooks = await user.fetchBooksByGenre('science');
+        const thrillerBooks = await user.fetchBooksByGenre('thriller');
+        const mysteryBooks = await user.fetchBooksByGenre('mystery');
+        const historyBooks = await user.fetchBooksByGenre('history');
+        
+        const fantasyBooks = await user.fetchBooksByGenre('fantasy');
         let cart;
 
         user.autoAuthenticateUser(async signedIn => {
             if (signedIn) cart = await user.fetchCartItems();
-            res.render('index', { cart, signedIn, fictionBooks, romanceBooks, nonFictionBooks, healthBooks });
+            res.render('index', { cart, signedIn, fictionBooks, romanceBooks, nonFictionBooks, healthBooks, actionBooks,mysteryBooks,historyBooks, scienceBooks, thrillerBooks, fantasyBooks });
         });
     } catch (error) {
         throw error;
@@ -95,3 +102,30 @@ export const getProfileData = async (req, res, next) => {
         throw error;
     }
 };
+
+export const paymetPage = async (req,res,next) => {
+        try {
+          const session = await stripe.checkout.sessions.create({
+            payment_method_types: ["card"],
+            mode: "payment",
+            line_items: req.body.items.map(item => {
+              const storeItem = storeItems.get(item.id)
+              return {
+                price_data: {
+                  currency: "inr",
+                  product_data: {
+                    name: storeItem.name,
+                  },
+                  unit_amount: storeItem.priceInCents,
+                },
+              
+              }
+            }),
+            success_url: `${process.env.SERVER_URL}/success.html`,
+            cancel_url: `${process.env.SERVER_URL}/cancel.html`,
+          })
+          res.json({ url: session.url })
+        } catch (e) {
+          res.status(500).json({ error: e.message })
+        }
+      };

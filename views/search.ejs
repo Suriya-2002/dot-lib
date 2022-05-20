@@ -30,7 +30,7 @@
         <section class="shop_grid_area section-padding-80">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 col-md-4 col-lg-3">
+                    <div class="col-12 col-md-4 col-lg-3 sidemenu">
                         <div class="shop_sidebar_area">
                             <!-- ##### Single Widget ##### -->
                             <div class="widget catagory mb-50">
@@ -41,95 +41,31 @@
                                 <div class="catagories-menu">
                                     <ul id="menu-content2" class="menu-content collapse show">
                                         <!-- Single Item -->
-                                        <li data-toggle="collapse" data-target="#clothing">
-                                            <a href="#">Genre</a>
+                                        <li data-target="#clothing">
+                                            <p class="widget-title2 mb-30">Genre</p>
                                             <ul class="sub-menu collapse show" id="clothing">
-                                                <li><a href="#">All</a></li>
-                                                <li><a href="#">Action and Adventure</a></li>
-                                                <li><a href="#">Classics</a></li>
-                                                <li><a href="#">Science Fiction</a></li>
-                                                <li><a href="#">Suspense and Thrillers</a></li>
-                                                <li><a href="#">Detective &amp; Mystery</a></li>
-                                                <li><a href="#">Fantasy</a></li>
-                                                <li><a href="#">Historical Fiction</a></li>
-                                                <li><a href="#">Horror</a></li>
-                                                <li><a href="#">Literary Fiction</a></li>
-                                                <li><a href="#">Romance</a></li>
+                                                <li><a href="/#fiction">Fiction</a></li>
+                                                <li><a href="/#nonfiction">Non Fiction</a></li>
+                                                <li><a href="/#action">Action and Adventure</a></li>                                                
+                                                <li><a href="/#science">Science Fiction</a></li>
+                                                <li><a href="/#thriller">Suspense and Thrillers</a></li>
+                                                <li><a href="/#mystery">Detective &amp; Mystery</a></li>
+                                                <li><a href="/#fantasy">Fantasy</a></li>
+                                                <li><a href="/#history">Historical Fiction</a></li>
+                                                <li><a href="/#health">Health</a></li>                                                
+                                                <li><a href="/#romance">Romance</a></li>
                                             </ul>
                                         </li>
                                         <!-- Single Item -->
-                                        <li data-toggle="collapse" data-target="#shoes" class="collapsed">
-                                            <a href="#">Type</a>
-                                            <ul class="sub-menu collapse" id="shoes">
-                                                <li><a href="#">All</a></li>
-                                                <li><a href="#">Books</a></li>
-                                                <li><a href="#">Comics</a></li>
-                                                <li><a href="#">Graphic Novel</a></li>
-                                                <li><a href="#">Short Stories</a></li>
-                                                <li><a href="#">Magazines</a></li>
-                                            </ul>
                                         </li>
                                         <!-- Single Item -->
-                                        <li
-                                            data-toggle="collapse"
-                                            data-target="#accessories"
-                                            class="collapsed"
-                                        ></li>
+                                        
                                     </ul>
                                 </div>
                             </div>
 
-                            <!-- ##### Single Widget ##### -->
-                            <div class="widget price mb-50">
-                                <!-- Widget Title -->
-                                <h6 class="widget-title mb-30">Filter by</h6>
-                                <!-- Widget Title 2 -->
-                                <p class="widget-title2 mb-30">Price</p>
-
-                                <div class="widget-desc">
-                                    <div class="slider-range">
-                                        <div
-                                            data-min="49"
-                                            data-max="1499"
-                                            data-unit="₹"
-                                            class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
-                                            data-value-min="49"
-                                            data-value-max="1499"
-                                            data-label-result="Range:"
-                                        >
-                                            <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-                                            <span
-                                                class="ui-slider-handle ui-state-default ui-corner-all"
-                                                tabindex="0"
-                                            ></span>
-                                            <span
-                                                class="ui-slider-handle ui-state-default ui-corner-all"
-                                                tabindex="0"
-                                            ></span>
-                                        </div>
-                                        <div class="range-price">Range: ₹49.00 - ₹1499.00</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- ##### Single Widget ##### -->
-
-                            <!-- ##### Single Widget ##### -->
-                            <div class="widget brands mb-50">
-                                <!-- Widget Title 2 -->
-                                <p class="widget-title2 mb-30">Authors</p>
-                                <div class="widget-desc">
-                                    <ul>
-                                        <li><a href="#">Peter James</a></li>
-                                        <li><a href="#">Elly Griffiths</a></li>
-                                        <li><a href="#">James Patterson</a></li>
-                                        <li><a href="#">David Baldacci</a></li>
-                                        <li><a href="#">Lee Child</a></li>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
-                    </div>
+                    </div> 
 
                     <div class="col-12 col-md-8 col-lg-9">
                         <div class="shop_grid_product_area">
@@ -142,19 +78,7 @@
                                         <div class="total-products">
                                             <p><span><%= searchResults.totalItems %></span> products found</p>
                                         </div>
-                                        <!-- Sorting -->
-                                        <div class="product-sorting d-flex">
-                                            <p>Sort by:</p>
-                                            <form action="#" method="get">
-                                                <select name="select" id="sortByselect">
-                                                    <option value="value">Highest Rated</option>
-                                                    <option value="value">Newest</option>
-                                                    <option value="value">Price: $$ - $</option>
-                                                    <option value="value">Price: $ - $$</option>
-                                                </select>
-                                                <input type="submit" class="d-none" value="" />
-                                            </form>
-                                        </div>
+                                     
                                     </div>
                                 </div>
                             </div>
