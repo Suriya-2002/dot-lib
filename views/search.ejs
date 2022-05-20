@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <%- include('./includes/head.ejs', { includeJS: true, signedIn }) %>
 
-        <title>.lib - <%= searchQuery %></title>
+<head>
+    <%- include('./includes/head.ejs', { includeJS: true, signedIn }) %>
+
+        <title>.lib - <%= searchQuery %>
+        </title>
 
         <link rel="stylesheet" href="/css/core-style.css" />
         <link rel="stylesheet" href="/css/style.css" />
-    </head>
+</head>
 
-    <body>
-        <%- include('./includes/navigation-bar.ejs') %>
+<body>
+    <%- include('./includes/navigation-bar.ejs') %>
 
         <!-- ##### Breadcumb Area Start ##### -->
         <div class="breadcumb_area bg-img" style="background-image: url(/assets/images/banner.jpg)">
@@ -24,9 +26,7 @@
                 </div>
             </div>
         </div>
-        <!-- ##### Breadcumb Area End ##### -->
 
-        <!-- ##### Shop Grid Area Start ##### -->
         <section class="shop_grid_area section-padding-80">
             <div class="container">
                 <div class="row">
@@ -35,7 +35,7 @@
                             <!-- ##### Single Widget ##### -->
                             <div class="widget catagory mb-50">
                                 <!-- Widget Title -->
-                                <h6 class="widget-title mb-30">Catagories</h6>
+                                <h6 class="widget-title mb-30">Categories</h6>
 
                                 <!--  Catagories  -->
                                 <div class="catagories-menu">
@@ -46,112 +46,91 @@
                                             <ul class="sub-menu collapse show" id="clothing">
                                                 <li><a href="/#fiction">Fiction</a></li>
                                                 <li><a href="/#nonfiction">Non Fiction</a></li>
-                                                <li><a href="/#action">Action and Adventure</a></li>                                                
+                                                <li><a href="/#action">Action and Adventure</a></li>
                                                 <li><a href="/#science">Science Fiction</a></li>
                                                 <li><a href="/#thriller">Suspense and Thrillers</a></li>
                                                 <li><a href="/#mystery">Detective &amp; Mystery</a></li>
                                                 <li><a href="/#fantasy">Fantasy</a></li>
                                                 <li><a href="/#history">Historical Fiction</a></li>
-                                                <li><a href="/#health">Health</a></li>                                                
+                                                <li><a href="/#health">Health</a></li>
                                                 <li><a href="/#romance">Romance</a></li>
                                             </ul>
                                         </li>
                                         <!-- Single Item -->
                                         </li>
-                                        <!-- Single Item -->
-                                        
+
+
                                     </ul>
                                 </div>
                             </div>
 
                         </div>
-                    </div> 
+                    </div>
 
                     <div class="col-12 col-md-8 col-lg-9">
                         <div class="shop_grid_product_area">
                             <div class="row">
                                 <div class="col-12">
-                                    <div
-                                        class="product-topbar d-flex align-items-center justify-content-between"
-                                    >
+                                    <div class="product-topbar d-flex align-items-center justify-content-between">
                                         <!-- Total Products -->
                                         <div class="total-products">
-                                            <p><span><%= searchResults.totalItems %></span> products found</p>
+                                            <p><span>
+                                                    <%= searchResults.totalItems %>
+                                                </span> products found</p>
                                         </div>
-                                     
+
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row">
-                                <% searchResults.items.forEach(item => { %>
-                                <div class="col-12 col-sm-6 col-lg-4">
-                                    <div class="single-product-wrapper">
-                                        <!-- Product Image -->
-                                        <div class="product-img">
-                                            <img src="<%= item.volumeInfo.imageLinks?.thumbnail %>" alt="" />
-                                            <!-- Hover Thumb -->
-                                            <img
-                                                class="hover-img"
-                                                src="<%= item.volumeInfo.imageLinks?.thumbnail %>"
-                                                alt=""
-                                            />
-
-                                            <!-- Product Badge -->
-                                            <div class="product-badge offer-badge">
-                                                <span>-30%</span>
+                                <% searchResults.items.forEach(item=> { %>
+                                    <div class="col-12 col-sm-6 col-lg-4">
+                                        <div class="single-product-wrapper">
+                                            <!-- Product Image -->
+                                            <div class="product-img">
+                                                <img src="<%= item.volumeInfo.imageLinks?.thumbnail %>" alt="" />
+                                                <!-- Hover Thumb -->
+                                                <img class="hover-img"
+                                                    src="<%= item.volumeInfo.imageLinks?.thumbnail %>" alt="" />
+                                                <div class="product-favourite">
+                                                    <a href="#" class="favme fa fa-heart"></a>
+                                                </div>
                                             </div>
-                                            <!-- Favourite -->
-                                            <div class="product-favourite">
-                                                <a href="#" class="favme fa fa-heart"></a>
-                                            </div>
-                                        </div>
 
-                                        <!-- Product Description -->
-                                        <div class="product-description">
-                                            <span><%= item.volumeInfo.categories %></span>
-                                            <a href="/details/<%= item.id %>">
-                                                <h6><%= item.volumeInfo.title %></h6>
-                                            </a>
-                                            <p class="product-price">Renting Starts at &#8377;50</p>
+                                            <!-- Product Description -->
+                                            <div class="product-description">
+                                                <span>
+                                                    <%= item.volumeInfo.categories %>
+                                                </span>
+                                                <a href="/details/<%= item.id %>">
+                                                    <h6>
+                                                        <%= item.volumeInfo.title %>
+                                                    </h6>
+                                                </a>
+                                                <p class="product-price">Renting Starts at &#8377;50</p>
 
-                                            <!-- Hover Content -->
-                                            <div class="hover-content">
-                                                <!-- Add to Cart -->
-                                                <div class="add-to-cart-btn">
-                                                    <a href="/details/<%= item.id %>" class="btn essence-btn"
-                                                        >Know More</a
-                                                    >
+                                                <!-- Hover Content -->
+                                                <div class="hover-content">
+                                                    <!-- Add to Cart -->
+                                                    <div class="add-to-cart-btn">
+                                                        <a href="/details/<%= item.id %>" class="btn essence-btn">Know
+                                                            More</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <% }); %>
+                                    <% }); %>
                             </div>
                         </div>
-                        <!-- Pagination -->
-                        <nav aria-label="navigation">
-                            <ul class="pagination mt-50 mb-70">
-                                <li class="page-item">
-                                    <a class="page-link" href="#"><i class="fa fa-angle-left"></i></a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">...</a></li>
-                                <li class="page-item"><a class="page-link" href="#">21</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
-                                </li>
-                            </ul>
-                        </nav>
+
                     </div>
                 </div>
             </div>
         </section>
-        <!-- ##### Shop Grid Area End ##### -->
 
         <%- include('./includes/footer.ejs') %>
-    </body>
+</body>
+
 </html>
