@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <%- include('./includes/head.ejs', { includeJS: true, signedIn }) %>
+
+<head>
+    <%- include('./includes/head.ejs', { includeJS: true, signedIn }) %>
 
         <title>.lib - {#USER_NAME#}</title>
 
         <link rel="stylesheet" href="/css/core-style.css" />
         <link rel="stylesheet" href="/css/style.css" />
-    </head>
+</head>
 
-    <body>
-        <%- include('./includes/navigation-bar.ejs') %>
+<body>
+    <%- include('./includes/navigation-bar.ejs') %>
 
         <!-- ##### Breadcumb Area Start ##### -->
         <div class="breadcumb_area bg-img" style="background-image: url(/assets/images/banner.jpg)">
@@ -40,27 +41,19 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="first_name">First Name <span>*</span></label>
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            id="first_name"
-                                            value=""
-                                            required
-                                        />
+                                        <input type="text" class="form-control" id="first_name" value="" required />
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="last_name">Last Name <span>*</span></label>
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            id="last_name"
-                                            value=""
-                                            required
-                                        />
+                                        <input type="text" class="form-control" id="last_name" value="" required />
                                     </div>
                                     <div class="col-12 mb-3">
                                         <label for="company">Contact Number<span>*</span></label>
                                         <input type="number" class="form-control" id="company" value="" />
+                                    </div>
+                                    <div class="col-12 mb-4">
+                                        <label for="email_address">Email Address <span>*</span></label>
+                                        <input type="email" class="form-control" id="email_address" value="" />
                                     </div>
                                     <div class="col-12 mb-3">
                                         <label for="country">Country<span>*</span></label>
@@ -77,47 +70,73 @@
                                     </div>
                                     <div class="col-12 mb-3">
                                         <label for="street_address">Address <span>*</span></label>
-                                        <input
-                                            type="text"
-                                            class="form-control mb-3"
-                                            id="street_address"
-                                            value=""
-                                        />
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            id="street_address2"
-                                            value=""
-                                        />
+                                        <input type="text" class="form-control mb-3" id="street_address" value="" />
+                                        <input type="text" class="form-control" id="street_address2" value="" />
                                     </div>
                                     <div class="col-12 mb-3">
                                         <label for="postcode">Postcode <span>*</span></label>
                                         <input type="text" class="form-control" id="postcode" value="" />
                                     </div>
-                                    <div class="col-12 mb-3">
-                                        <label for="city">Town/City <span>*</span></label>
-                                        <input type="text" class="form-control" id="city" value="" />
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <label for="state">Province <span>*</span></label>
-                                        <input type="text" class="form-control" id="state" value="" />
-                                    </div>
 
-                                    <div class="col-12 mb-4">
-                                        <label for="email_address">Email Address <span>*</span></label>
-                                        <input
-                                            type="email"
-                                            class="form-control"
-                                            id="email_address"
-                                            value=""
-                                        />
-                                    </div>
+
                                 </div>
-                                <a href="/profileDetails" class="btn essence-btn">Update Profile</a>
+                                <button type="submit"  name="addtocart" value="5" class="btn essence-btn">
+                                    Update Profile
+                                </button>
                             </form>
                         </div>
                     </div>
 
+                    <div class="col-12 col-md-6 col-lg-5 ml-lg-auto">
+                        <div class="order-details-confirmation">
+                            <div class="cart-page-heading">
+                                <h5>Preferences
+                                </h5>
+                                <p>Help Us Serve You Better</p>
+                            </div>
+
+
+                            <form action="" method="post">
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="genre" class="pname">Genre<span>*</span></label>
+                                    <select name="genre" id="genre" onchange="selectWeek()" class="mr-5" required>
+                                        <option hidden>Choose Genre</option>
+                                        <option value="0">Non Fiction</option>
+                                        <option value="1">Fiction</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="book-type" class="pname">Book Type<span>*</span></label>
+                                    <select name="book-type" id="book-type" onchange="selectWeek()" class="mr-5"
+                                        required>
+                                        <option hidden>Choose Book Type</option>
+                                        <option value="0">Audiobook</option>
+                                        <option value="1">Hardcover</option>
+                                        <option value="2">Paperback</option>
+                                        <option value="3">eBook</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="pages" class="pname">Reading Habbits<span>*</span></label>
+                                    <select name="pages" id="pages" onchange="selectWeek()" class="mr-5" required>
+                                        <option hidden>Number of pages you read</option>
+                                        <option value="100">100</option>
+                                        <option value="200">200</option>
+                                        <option value="300">300</option>
+                                        <option value="400">400</option>
+                                        <option value="500">500</option>
+                                    </select>
+                                </div>
+                                <button type="submit" style="margin-top:1rem" name="addtocart" value="5" class="btn essence-btn">
+                                    Update Preferences
+                                </button>
+                            </form>
+
+
+                        </div>
+                    </div>
                     <div class="col-12 col-md-6 col-lg-5 ml-lg-auto">
                         <div class="order-details-confirmation">
                             <div class="cart-page-heading">
@@ -131,6 +150,8 @@
                                 <li><span>Outliers</span> <span>₹50.00</span></li>
                                 <li><span>Jungle Book</span> <span>₹100.00</span></li>
                             </ul>
+
+                            
                         </div>
                     </div>
                 </div>
@@ -139,5 +160,6 @@
         <!-- ##### Checkout Area End ##### -->
 
         <%- include('./includes/footer.ejs') %>
-    </body>
+</body>
+
 </html>
