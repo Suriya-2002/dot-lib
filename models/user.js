@@ -77,6 +77,10 @@ export const authenticationSignUp = async (name, email, password) => {
                 subtotal: 0,
                 items: [],
             },
+            preferences: {
+                reviews: 40,
+                totalRatings: 500,
+            },
         });
 
         await updateState();
@@ -177,6 +181,25 @@ export const fetchBooksByGenre = async genre => {
         const response = await axios.get(URL);
 
         return response.data;
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const updatePreference = async preferences => {
+    try {
+        const userID = auth.currentUser?.uid;
+        if (!userID) return;
+
+        const userDocumentReference = doc(db, 'users', userID);
+
+        await updateDoc(userDocumentReference, {
+            'preferences.genre': Number(preferences.genre),
+            'preferences.bookType': Number(preferences.bookType),
+            'preferences.numberOfPages': Number(preferences.numberOfPages),
+        });
+
+        await updateState();
     } catch (error) {
         throw error;
     }
